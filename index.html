@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="nb">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fredriks arbeidsbenk</title>
+<meta name="description" content="Jeg studerer cybersikkerhet ved Høyskolen Kristiania i Oslo. Her ligger labarbeidet og prosjektene fra studiet, det jeg bygger på fritiden, og agentene jeg setter opp.">
+<meta property="og:title" content="Fredriks arbeidsbenk">
+<meta property="og:description" content="Jeg studerer cybersikkerhet ved Høyskolen Kristiania i Oslo. Her ligger labarbeidet og prosjektene fra studiet, det jeg bygger på fritiden, og agentene jeg setter opp.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
+<style>
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+body{margin:0}
+/* Layout: one dark patch panel on a pale equipment-grey page. Every project is a
+   port on the panel with a status light; the panel is the summary and the navigation.
+   Below it, projects are listed left-aligned, group name in the margin.
+   Type: one family (Archivo), condensed width for names and panel print, normal for reading. */
+:root{
+  --bg:#E8EBE5; --ink:#17201C; --muted:#56635C; --line:#C6CEC6;
+  --accent:#2146C7; --accent-soft:#D6DEF6;
+  --led-active:#1E8A4C; --led-paused:#B06F00; --led-planned:#2A5FC0; --led-idea:#7B877F; --led-done:#56635C;
+  --panel:#1B2320; --panel-edge:#0D1311; --panel-ink:#DDE4DF; --panel-muted:#8E9B94; --jack:#090D0C; --jack-rim:#3A4742;
+  --p-active:#4FE08A; --p-paused:#FFB534; --p-planned:#6FAEFF; --p-done:#DCE3DE;
+  --font:"Archivo","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#111715; --ink:#E4E9E5; --muted:#98A59E; --line:#2A3531;
+    --accent:#93ABFF; --accent-soft:#1D2748;
+    --led-active:#4FE08A; --led-paused:#FFB534; --led-planned:#6FAEFF; --led-idea:#7E8A84; --led-done:#B9C3BD;
+    --panel:#1B2320; --panel-edge:#34413C;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#111715; --ink:#E4E9E5; --muted:#98A59E; --line:#2A3531;
+  --accent:#93ABFF; --accent-soft:#1D2748;
+  --led-active:#4FE08A; --led-paused:#FFB534; --led-planned:#6FAEFF; --led-idea:#7E8A84; --led-done:#B9C3BD;
+  --panel:#1B2320; --panel-edge:#34413C;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.55}
+.wrap{max-width:1040px;margin:0 auto;padding-block:48px 64px;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));
+  display:flex;flex-direction:column;gap:36px}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+
+/* ---------- top ---------- */
+.top{display:flex;flex-direction:column;gap:14px}
+h1{margin:0;font-stretch:62%;font-weight:800;font-size:clamp(3rem,11vw,6.25rem);line-height:.9;letter-spacing:-.01em;overflow-wrap:anywhere}
+.lede{margin:0;max-width:60ch;font-size:1.1rem;color:var(--muted)}
+
+/* ---------- patch panel ---------- */
+.panel{background:var(--panel);border:1px solid var(--panel-edge);border-radius:6px;padding:18px 20px 16px;
+  display:flex;flex-wrap:wrap;gap:20px 0;color:var(--panel-ink)}
+.panel :focus-visible{outline-color:var(--p-planned)}
+.bay{display:flex;flex-direction:column;gap:12px;padding-right:22px;margin-right:22px;border-right:1px solid var(--jack-rim);min-width:0}
+.bay:last-child{border-right:0;padding-right:0;margin-right:0}
+.bay-name{font-stretch:75%;font-weight:600;font-size:.95rem;letter-spacing:.02em;color:var(--panel-muted);text-decoration:none;width:fit-content}
+.bay-name:hover{color:var(--panel-ink)}
+.bay-name[aria-current="page"]{color:var(--panel-ink);box-shadow:0 2px 0 var(--p-planned)}
+.ports{display:flex;flex-wrap:wrap;gap:12px 6px;min-height:28px}
+.port{appearance:none;background:none;border:0;padding:0;margin:0;cursor:pointer;color:var(--panel-ink);font-family:inherit;
+  width:62px;display:flex;flex-direction:column;align-items:center;gap:6px}
+.port .led{width:8px;height:8px;border-radius:50%}
+.jack{width:38px;height:28px;border-radius:3px;background:var(--jack);border:1px solid var(--jack-rim);position:relative}
+.jack::after{content:"";position:absolute;left:50%;bottom:-1px;width:14px;height:6px;transform:translateX(-50%);background:var(--jack);border:1px solid var(--jack-rim);border-bottom:0;border-radius:2px 2px 0 0}
+.port:hover .jack,.port:focus-visible .jack{border-color:var(--panel-ink)}
+.port-label{font-stretch:62%;font-weight:500;font-size:.8rem;line-height:1.1;color:var(--panel-muted);text-align:center;overflow-wrap:break-word;hyphens:auto}
+.port:hover .port-label{color:var(--panel-ink)}
+.led.active{background:var(--p-active);box-shadow:0 0 8px var(--p-active)}
+.led.paused{background:var(--p-paused);box-shadow:0 0 6px var(--p-paused)}
+.led.planned{background:var(--p-planned)}
+.led.done{background:var(--p-done)}
+.led.idea{background:transparent;box-shadow:inset 0 0 0 1.5px var(--panel-muted)}
+@media (prefers-reduced-motion:no-preference){
+  .panel .led.active{animation:link 2.6s ease-in-out infinite}
+  @keyframes link{0%,100%{opacity:1}50%{opacity:.45}}
+}
+
+.legend{display:flex;flex-wrap:wrap;gap:6px 20px;margin:-22px 0 0;font-size:.9rem;color:var(--muted);align-items:center}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.legend a{margin-left:auto}
+.dot{width:9px;height:9px;border-radius:50%;flex:none}
+.dot.active{background:var(--led-active)} .dot.paused{background:var(--led-paused)}
+.dot.planned{background:var(--led-planned)} .dot.done{background:var(--led-done)}
+.dot.idea{box-shadow:inset 0 0 0 1.5px var(--led-idea)}
+
+/* ---------- groups ---------- */
+#view{display:flex;flex-direction:column;gap:52px}
+.group{display:grid;grid-template-columns:minmax(0,1fr);gap:8px 40px}
+.group-head{display:flex;flex-direction:column;gap:6px;padding-bottom:10px}
+h2{margin:0;font-stretch:62%;font-weight:800;font-size:2.1rem;line-height:1;text-wrap:balance;overflow-wrap:break-word;hyphens:auto}
+.group-head p{margin:0;color:var(--muted);font-size:.95rem;max-width:44ch}
+.entries{min-width:0;border-top:2px solid var(--ink)}
+.entry{display:grid;grid-template-columns:minmax(0,1fr);gap:8px 28px;padding:20px 0;border-bottom:1px solid var(--line);scroll-margin-top:16px;outline-offset:6px}
+.entry.hit{background:var(--accent-soft)}
+.id{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:2px 14px}
+.code{font-stretch:62%;font-weight:700;font-size:1.3rem;line-height:1.1;overflow-wrap:anywhere}
+.status{display:inline-flex;align-items:center;gap:7px;font-size:.92rem;color:var(--muted);white-space:nowrap}
+.body{min-width:0;display:flex;flex-direction:column;gap:8px}
+h3{margin:0;font-weight:600;font-size:1.15rem;line-height:1.3}
+.body p{margin:0;max-width:64ch}
+.tools{color:var(--muted);font-size:.93rem}
+details{font-size:.95rem}
+summary{cursor:pointer;color:var(--accent);font-weight:500;width:fit-content}
+details ul{margin:8px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:5px;max-width:64ch}
+dl.spec{margin:0;display:grid;grid-template-columns:minmax(0,1fr);gap:2px}
+dl.spec dt{font-stretch:75%;font-weight:600;font-size:.92rem;color:var(--muted);margin-top:8px}
+dl.spec dt:first-child{margin-top:0}
+dl.spec dd{margin:0;max-width:64ch}
+.empty{margin:0;padding:20px 0;color:var(--muted);font-size:.95rem;max-width:64ch}
+
+footer{color:var(--muted);font-size:.88rem}
+
+@media (min-width:620px){
+  .entry{grid-template-columns:132px minmax(0,1fr)}
+  .id{flex-direction:column;justify-content:flex-start;align-items:flex-start;gap:6px}
+  dl.spec{grid-template-columns:96px minmax(0,1fr);gap:8px 16px}
+  dl.spec dt{margin-top:2px}
+}
+@media (min-width:900px){
+  .group{grid-template-columns:200px minmax(0,1fr)}
+  .group-head{position:sticky;top:max(16px,env(safe-area-inset-top,0px));align-self:start;padding-top:14px}
+}
+</style>
+</head>
+<body>
+<div id="root"></div>
+<noscript><p style="padding:16px">Denne siden trenger JavaScript for å vise prosjektene.</p></noscript>
+<!-- Innholdet på siden. Endre teksten her, lagre og push. Status: active, paused, planned, idea eller done. -->
+<script type="application/json" id="state">
+{
+  "title": "Fredriks arbeidsbenk",
+  "lede": "Jeg studerer cybersikkerhet ved Høyskolen Kristiania i Oslo. Her ligger labarbeidet og prosjektene fra studiet, det jeg bygger på fritiden, og agentene jeg setter opp.",
+  "updated": "2026-11-12",
+  "groups": [
+    {
+      "id": "skole",
+      "title": "Skoleprosjekter",
+      "note": "Emner og innleveringer fra bachelor i cybersikkerhet, 2025 til 2028.",
+      "empty": "",
+      "items": [
+        {
+          "id": "eth2100",
+          "code": "ETH2100",
+          "title": "Etisk hacking: pentest-lab",
+          "status": "active",
+          "text": "Ukentlige labøvelser mot bevisst sårbare maskiner, pluss en egen Active Directory-lab bygget i VMware med domenekontroller på Windows Server.",
+          "tools": [
+            "Kali Linux",
+            "nmap",
+            "Nikto",
+            "OWASP ZAP",
+            "Metasploit",
+            "BloodHound",
+            "Nessus"
+          ],
+          "more": [
+            "Kartla Metasploitable med nmap: over 25 åpne porter, blant annet vsftpd 2.3.4-bakdøren (CVE-2011-2523), bekreftet med NSE-skript.",
+            "Kjørte ZAP Spider og Active Scan mot DVWA: 30 varsler, 5 av dem høy alvorlighet. Sorterte funnene i reelle sårbarheter og sannsynlige falske positiver.",
+            "Satte opp eget domene og egen domenekontroller for å øve på AD-angrep fra Kali på et isolert host-only-nett."
+          ],
+          "spec": []
+        },
+        {
+          "id": "cyb2100",
+          "code": "CYB2100",
+          "title": "Cyberforsvar",
+          "status": "active",
+          "text": "Høstsemesteret 2026. Beskrivelse av arbeidet kommer.",
+          "tools": [],
+          "more": [],
+          "spec": []
+        },
+        {
+          "id": "sky2100",
+          "code": "SKY2100",
+          "title": "Skysikkerhet",
+          "status": "active",
+          "text": "Høstsemesteret 2026. Beskrivelse av arbeidet kommer.",
+          "tools": [],
+          "more": [],
+          "spec": []
+        },
+        {
+          "id": "pgr112",
+          "code": "PGR112",
+          "title": "RussRental: utleiesystem i Java",
+          "status": "done",
+          "text": "Eksamensprosjekt i objektorientert programmering. Et administrasjonssystem for utleie med MySQL-database, bygget i IntelliJ.",
+          "tools": [
+            "Java",
+            "MySQL",
+            "JDBC",
+            "DAO-mønster"
+          ],
+          "more": [
+            "Arv og subklasser for ulike typer utleieobjekter, med egen feilhåndtering.",
+            "Ryddet opp med try-with-resources i filparseren og samlet databasetilkoblingene i DAO-laget.",
+            "Levert med fire videoer: demo, forklaring av arv, unntakshåndtering og live-koding av en ny subklasse."
+          ],
+          "spec": []
+        },
+        {
+          "id": "tk2100",
+          "code": "TK2100",
+          "title": "Websikkerhet",
+          "status": "done",
+          "text": "Praktiske øvelser i SQL-injeksjon mot en lokal øvingsapp, blant annet omgåelse av validering på klientsiden. Teori om XSS, CSRF, sesjonskapring og sertifikater.",
+          "tools": [
+            "SQL-injeksjon",
+            "XSS",
+            "CSRF"
+          ],
+          "more": [],
+          "spec": []
+        },
+        {
+          "id": "pgr215",
+          "code": "PGR215",
+          "title": "Datainnsamling og analyse",
+          "status": "planned",
+          "text": "Emne neste studieår.",
+          "tools": [],
+          "more": [],
+          "spec": []
+        },
+        {
+          "id": "pgr216",
+          "code": "PGR216",
+          "title": "KI og cybersikkerhet",
+          "status": "planned",
+          "text": "Emne neste studieår.",
+          "tools": [],
+          "more": [],
+          "spec": []
+        }
+      ]
+    },
+    {
+      "id": "prosjekter",
+      "title": "Sideprosjekter",
+      "note": "Ting jeg bygger utenom studiet.",
+      "empty": "",
+      "items": [
+        {
+          "id": "matmeg",
+          "code": "MatMeg",
+          "title": "Middagsforslag ut fra ukens tilbud",
+          "status": "active",
+          "text": "Norsk webapp som foreslår oppskrifter basert på hva som er på tilbud i butikkene du velger: Rema 1000, Kiwi, Meny og Bunnpris. Rettene rangeres etter hvor mange ingredienser som er på tilbud.",
+          "tools": [
+            "API-integrasjon",
+            "Kassal.app",
+            "JSON",
+            "PDF-uttrekk"
+          ],
+          "more": [
+            "Fire løst koblede lag: innhenting, normalisering, forhåndsberegnet matching og en frontend som lagrer valgene lokalt.",
+            "Henter strukturert tilbudsdata fra kundeavisene. Tekstlaget brukes først, med bildetolkning som reserve når PDF-en ikke har lesbar tekst."
+          ],
+          "spec": []
+        },
+        {
+          "id": "gdpr",
+          "code": "GDPR",
+          "title": "Innsyn i egne data",
+          "status": "planned",
+          "text": "Ber selskaper og datameglere om innsyn i hva de har lagret om meg, for så å analysere hva som faktisk samles inn og hvordan det henger sammen.",
+          "tools": [
+            "Personvern",
+            "GDPR artikkel 15",
+            "Dataanalyse"
+          ],
+          "more": [],
+          "spec": []
+        },
+        {
+          "id": "nettbutikk",
+          "code": "Nettbutikk",
+          "title": "Nettbutikk for treningstilbehør",
+          "status": "idea",
+          "text": "Shakere, strikker, kalk og løftestropper. Foreløpig på idéstadiet.",
+          "tools": [],
+          "more": [],
+          "spec": []
+        }
+      ]
+    },
+    {
+      "id": "agenter",
+      "title": "Agenter",
+      "note": "Hva hver agent skal gjøre, hva som starter den, og hvor langt den har kommet.",
+      "empty": "Neste agent får sin egen port i panelet når den er planlagt.",
+      "items": [
+        {
+          "id": "canvas",
+          "code": "Canvas",
+          "title": "Forelesningshenter for Canvas",
+          "status": "paused",
+          "text": "",
+          "tools": [],
+          "more": [],
+          "spec": [
+            [
+              "Formål",
+              "Laste ned nye forelesninger fra Canvas som PDF og legge dem i riktig mappe i Google Drive, klare for notatboken til hvert emne."
+            ],
+            [
+              "Starter",
+              "Hver dag, på tidsplan."
+            ],
+            [
+              "Verktøy",
+              "Python, Canvas API, Google Drive"
+            ],
+            [
+              "Venter på",
+              "API-token fra skolens IT-avdeling. Studenter kan ikke opprette egne, så jeg har bedt om tilgang i stedet for å gå rundt sperren."
+            ]
+          ]
+        }
+      ]
+    }
+  ]
+}
+</script>
+<script>
+const STATUS = { active:"Pågår", paused:"Pauset", planned:"Planlagt", idea:"Idé", done:"Fullført" };
+const state = JSON.parse(document.getElementById("state").textContent);
+const root = document.getElementById("root");
+const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let pending = null;
+
+function fmtDate(iso){
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
+  return m ? new Date(+m[1], +m[2] - 1, +m[3]).toLocaleDateString("nb-NO", { day:"numeric", month:"long", year:"numeric" }) : "";
+}
+function entryHTML(it){
+  const spec = it.spec && it.spec.length ? `<dl class="spec">${it.spec.map(([k,v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>` : "";
+  const text = it.text ? `<p>${esc(it.text)}</p>` : "";
+  const tools = it.tools && it.tools.length ? `<p class="tools">Verktøy og tema: ${it.tools.map(esc).join(", ")}</p>` : "";
+  const more = it.more && it.more.length ? `<details><summary>Hva jeg har gjort</summary><ul>${it.more.map(m => `<li>${esc(m)}</li>`).join("")}</ul></details>` : "";
+  return `<article class="entry" id="p-${esc(it.id)}" tabindex="-1">
+    <div class="id"><span class="code">${esc(it.code)}</span><span class="status"><i class="dot ${esc(it.status)}"></i>${STATUS[it.status] || ""}</span></div>
+    <div class="body"><h3>${esc(it.title)}</h3>${text}${spec}${tools}${more}</div>
+  </article>`;
+}
+function groupHTML(g){
+  const empty = g.empty ? `<p class="empty">${esc(g.empty)}</p>` : (g.items.length ? "" : `<p class="empty">Ingen prosjekter her ennå.</p>`);
+  return `<section class="group" aria-labelledby="h-${esc(g.id)}">
+    <div class="group-head"><h2 id="h-${esc(g.id)}">${esc(g.title)}</h2>${g.note ? `<p>${esc(g.note)}</p>` : ""}</div>
+    <div class="entries">${g.items.map(entryHTML).join("")}${empty}</div>
+  </section>`;
+}
+function render(){
+  const route = (location.hash || "").slice(1);
+  const current = state.groups.find(g => g.id === route);
+  const panel = state.groups.map(g => `
+    <div class="bay">
+      <a class="bay-name" href="#${esc(g.id)}"${current && current.id === g.id ? ' aria-current="page"' : ""}>${esc(g.title)}</a>
+      <div class="ports">${g.items.map(it => {
+        const st = (STATUS[it.status] || "").toLowerCase();
+        return `<button class="port" type="button" data-id="${esc(it.id)}" data-group="${esc(g.id)}" aria-label="${esc(it.code)}: ${esc(it.title)}, ${st}" title="${esc(it.title)} (${st})">
+          <span class="led ${esc(it.status)}"></span><span class="jack"></span><span class="port-label">${esc(it.code)}</span></button>`;
+      }).join("")}</div>
+    </div>`).join("");
+  const legend = Object.keys(STATUS).map(k => `<span><i class="dot ${k}"></i>${STATUS[k]}</span>`).join("") +
+    (current ? `<a href="#oversikt">Vis alle prosjekter</a>` : "");
+  root.innerHTML = `<div class="wrap">
+    <header class="top"><h1>${esc(state.title)}</h1>${state.lede ? `<p class="lede">${esc(state.lede)}</p>` : ""}</header>
+    <nav class="panel" aria-label="Alle prosjekter, gruppert">${panel}</nav>
+    <p class="legend">${legend}</p>
+    <main id="view">${(current ? [current] : state.groups).map(groupHTML).join("")}</main>
+    <footer>Sist oppdatert ${esc(fmtDate(state.updated))}</footer>
+  </div>`;
+  if (pending) { const id = pending; pending = null; goTo(id); }
+}
+function goTo(id){
+  const el = document.getElementById("p-" + id);
+  if (!el) return;
+  const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  el.scrollIntoView({ behavior: calm ? "auto" : "smooth", block: "start" });
+  el.focus({ preventScroll: true });
+  el.classList.add("hit");
+  setTimeout(() => el.classList.remove("hit"), 1600);
+}
+root.addEventListener("click", e => {
+  const port = e.target.closest(".port");
+  if (!port) return;
+  const route = (location.hash || "").slice(1);
+  if (state.groups.some(g => g.id === route) && route !== port.dataset.group) { pending = port.dataset.id; location.hash = "#" + port.dataset.group; }
+  else goTo(port.dataset.id);
+});
+addEventListener("hashchange", render);
+render();
+</script>
+</body>
+</html>
