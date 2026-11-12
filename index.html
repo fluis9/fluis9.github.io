@@ -293,6 +293,32 @@ footer{color:var(--muted);font-size:.88rem}
       "empty": "",
       "items": [
         {
+          "id": "deteksjonslab",
+          "code": "Deteksjon",
+          "title": "Angrep og deteksjon i egen lab",
+          "status": "active",
+          "text": "Jeg angriper min egen lab og skriver deteksjonen for hvert angrep: hvilke spor angrepet etterlater, hvilket Splunk-søk som finner dem, og hva søket ikke fanger. Hver deteksjon er koblet til MITRE ATT&CK.",
+          "tools": [
+            "Splunk",
+            "SPL",
+            "MITRE ATT&CK",
+            "Hydra",
+            "fail2ban",
+            "Kali Linux"
+          ],
+          "more": [
+            "Første deteksjon: SSH brute force, med egne søk for angrep som ble stoppet, innlogging etter mange feil og langsomme forsøk som går under fail2ban.",
+            "Neste: portskanning fra UFW-loggen, og password spraying og Kerberoasting mot AD-labben."
+          ],
+          "spec": [],
+          "links": [
+            [
+              "Repo på GitHub",
+              "https://github.com/fluis9/deteksjonslab"
+            ]
+          ]
+        },
+        {
           "id": "matmeg",
           "code": "MatMeg",
           "title": "Middagsforslag ut fra ukens tilbud",
