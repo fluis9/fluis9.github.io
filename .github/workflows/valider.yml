@@ -1,0 +1,17 @@
+name: Valider data.json
+
+on:
+  push:
+    paths: ["data.json", "verktoy/valider.py"]
+  pull_request:
+    paths: ["data.json", "verktoy/valider.py"]
+
+permissions:
+  contents: read
+
+jobs:
+  valider:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 verktoy/valider.py
