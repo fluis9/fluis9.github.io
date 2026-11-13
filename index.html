@@ -1,25 +1,13 @@
-<!doctype html>
-<html lang="nb">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!doctype html><html lang="nb"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Jeg studerer cybersikkerhet ved Høyskolen Kristiania i Oslo. Her ligger labarbeidet og prosjektene fra studiet, det jeg bygger på fritiden, og agentene jeg setter opp."><meta property="og:title" content="Fredriks arbeidsbenk"><meta property="og:description" content="Jeg studerer cybersikkerhet ved Høyskolen Kristiania i Oslo. Her ligger labarbeidet og prosjektene fra studiet, det jeg bygger på fritiden, og agentene jeg setter opp."><meta property="og:type" content="website"><meta property="og:url" content="https://fluis9.github.io/"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Fredriks arbeidsbenk</title>
-<meta name="description" content="Jeg studerer cybersikkerhet ved Høyskolen Kristiania i Oslo. Her ligger labarbeidet og prosjektene fra studiet, det jeg bygger på fritiden, og agentene jeg setter opp.">
-<meta property="og:title" content="Fredriks arbeidsbenk">
-<meta property="og:description" content="Jeg studerer cybersikkerhet ved Høyskolen Kristiania i Oslo. Her ligger labarbeidet og prosjektene fra studiet, det jeg bygger på fritiden, og agentene jeg setter opp.">
-<meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
-<style>
-:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-body{margin:0}
+<style id="css">
 /* Layout: one dark patch panel on a pale equipment-grey page. Every project is a
    port on the panel with a status light; the panel is the summary and the navigation.
    Below it, projects are listed left-aligned, group name in the margin.
    Type: one family (Archivo), condensed width for names and panel print, normal for reading. */
 :root{
-  --bg:#E8EBE5; --ink:#17201C; --muted:#56635C; --line:#C6CEC6;
+  --bg:#E8EBE5; --ink:#17201C; --muted:#56635C; --line:#C6CEC6; --field:#F7F9F5; --danger:#B3261E;
   --accent:#2146C7; --accent-soft:#D6DEF6;
   --led-active:#1E8A4C; --led-paused:#B06F00; --led-planned:#2A5FC0; --led-idea:#7B877F; --led-done:#56635C;
   --panel:#1B2320; --panel-edge:#0D1311; --panel-ink:#DDE4DF; --panel-muted:#8E9B94; --jack:#090D0C; --jack-rim:#3A4742;
@@ -28,7 +16,7 @@ body{margin:0}
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#111715; --ink:#E4E9E5; --muted:#98A59E; --line:#2A3531;
+    --bg:#111715; --ink:#E4E9E5; --muted:#98A59E; --line:#2A3531; --field:#1A2320; --danger:#FF8A80;
     --accent:#93ABFF; --accent-soft:#1D2748;
     --led-active:#4FE08A; --led-paused:#FFB534; --led-planned:#6FAEFF; --led-idea:#7E8A84; --led-done:#B9C3BD;
     --panel:#1B2320; --panel-edge:#34413C;
@@ -36,7 +24,7 @@ body{margin:0}
   }
 }
 :root[data-theme="dark"]{
-  --bg:#111715; --ink:#E4E9E5; --muted:#98A59E; --line:#2A3531;
+  --bg:#111715; --ink:#E4E9E5; --muted:#98A59E; --line:#2A3531; --field:#1A2320; --danger:#FF8A80;
   --accent:#93ABFF; --accent-soft:#1D2748;
   --led-active:#4FE08A; --led-paused:#FFB534; --led-planned:#6FAEFF; --led-idea:#7E8A84; --led-done:#B9C3BD;
   --panel:#1B2320; --panel-edge:#34413C;
@@ -54,8 +42,6 @@ a{color:var(--accent)}
 .top{display:flex;flex-direction:column;gap:14px}
 h1{margin:0;font-stretch:62%;font-weight:800;font-size:clamp(3rem,11vw,6.25rem);line-height:.9;letter-spacing:-.01em;overflow-wrap:anywhere}
 .lede{margin:0;max-width:60ch;font-size:1.1rem;color:var(--muted)}
-.contact{display:flex;flex-wrap:wrap;gap:6px 22px;margin:0;padding:0;list-style:none;font-weight:500}
-.contact a{text-decoration-thickness:1px;text-underline-offset:3px}
 
 /* ---------- patch panel ---------- */
 .panel{background:var(--panel);border:1px solid var(--panel-edge);border-radius:6px;padding:18px 20px 16px;
@@ -68,20 +54,23 @@ h1{margin:0;font-stretch:62%;font-weight:800;font-size:clamp(3rem,11vw,6.25rem);
 .bay-name[aria-current="page"]{color:var(--panel-ink);box-shadow:0 2px 0 var(--p-planned)}
 .ports{display:flex;flex-wrap:wrap;gap:12px 6px;min-height:28px}
 .port{appearance:none;background:none;border:0;padding:0;margin:0;cursor:pointer;color:var(--panel-ink);font-family:inherit;
-  width:62px;display:flex;flex-direction:column;align-items:center;gap:6px}
+  width:72px;display:flex;flex-direction:column;align-items:center;gap:6px}
 .port .led{width:8px;height:8px;border-radius:50%}
 .jack{width:38px;height:28px;border-radius:3px;background:var(--jack);border:1px solid var(--jack-rim);position:relative}
 .jack::after{content:"";position:absolute;left:50%;bottom:-1px;width:14px;height:6px;transform:translateX(-50%);background:var(--jack);border:1px solid var(--jack-rim);border-bottom:0;border-radius:2px 2px 0 0}
 .port:hover .jack,.port:focus-visible .jack{border-color:var(--panel-ink)}
-.port-label{font-stretch:62%;font-weight:500;font-size:.8rem;line-height:1.1;color:var(--panel-muted);text-align:center;overflow-wrap:break-word;hyphens:auto}
+.port-label{font-stretch:62%;font-weight:500;font-size:.8rem;line-height:1.1;color:var(--panel-muted);text-align:center;overflow-wrap:anywhere}
 .port:hover .port-label{color:var(--panel-ink)}
 .led.active{background:var(--p-active);box-shadow:0 0 8px var(--p-active)}
 .led.paused{background:var(--p-paused);box-shadow:0 0 6px var(--p-paused)}
 .led.planned{background:var(--p-planned)}
 .led.done{background:var(--p-done)}
 .led.idea{background:transparent;box-shadow:inset 0 0 0 1.5px var(--panel-muted)}
+.led.ready{background:var(--p-active);box-shadow:0 0 6px var(--p-active)}
+.led.busy{background:var(--p-active);box-shadow:0 0 10px var(--p-active)}
 @media (prefers-reduced-motion:no-preference){
   .panel .led.active{animation:link 2.6s ease-in-out infinite}
+  .panel .led.busy{animation:link .8s ease-in-out infinite}
   @keyframes link{0%,100%{opacity:1}50%{opacity:.45}}
 }
 
@@ -97,7 +86,7 @@ h1{margin:0;font-stretch:62%;font-weight:800;font-size:clamp(3rem,11vw,6.25rem);
 #view{display:flex;flex-direction:column;gap:52px}
 .group{display:grid;grid-template-columns:minmax(0,1fr);gap:8px 40px}
 .group-head{display:flex;flex-direction:column;gap:6px;padding-bottom:10px}
-h2{margin:0;font-stretch:62%;font-weight:800;font-size:2.1rem;line-height:1;text-wrap:balance;overflow-wrap:break-word;hyphens:auto}
+h2{margin:0;font-stretch:62%;font-weight:800;font-size:2.1rem;line-height:1;text-wrap:balance;overflow-wrap:anywhere}
 .group-head p{margin:0;color:var(--muted);font-size:.95rem;max-width:44ch}
 .entries{min-width:0;border-top:2px solid var(--ink)}
 .entry{display:grid;grid-template-columns:minmax(0,1fr);gap:8px 28px;padding:20px 0;border-bottom:1px solid var(--line);scroll-margin-top:16px;outline-offset:6px}
@@ -109,8 +98,6 @@ h2{margin:0;font-stretch:62%;font-weight:800;font-size:2.1rem;line-height:1;text
 h3{margin:0;font-weight:600;font-size:1.15rem;line-height:1.3}
 .body p{margin:0;max-width:64ch}
 .tools{color:var(--muted);font-size:.93rem}
-.links{display:flex;flex-wrap:wrap;gap:4px 18px;margin:0;padding:0;list-style:none;font-size:.95rem;font-weight:500}
-.links a{text-underline-offset:3px}
 details{font-size:.95rem}
 summary{cursor:pointer;color:var(--accent);font-weight:500;width:fit-content}
 details ul{margin:8px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:5px;max-width:64ch}
@@ -122,6 +109,89 @@ dl.spec dd{margin:0;max-width:64ch}
 
 footer{color:var(--muted);font-size:.88rem}
 
+/* ---------- editing (only the owner sees this) ---------- */
+.ownerbar{display:flex;flex-wrap:wrap;gap:8px 10px;align-items:center;padding:12px 14px;border:1px dashed var(--muted);border-radius:6px;font-size:.93rem}
+.ownerbar .say{flex:1 1 240px;min-width:0;color:var(--muted)}
+.ownerbar .say.warn{color:var(--danger)}
+.btn{appearance:none;font:inherit;font-size:.92rem;font-weight:500;line-height:1.2;padding:8px 14px;border-radius:5px;border:1px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer}
+.btn:hover:not(:disabled){background:var(--accent-soft)}
+.btn.primary{background:var(--ink);color:var(--bg)}
+.btn.primary:hover:not(:disabled){background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.btn.small{padding:4px 10px;font-size:.85rem;border-color:var(--muted)}
+.btn.danger{border-color:var(--danger);color:var(--danger)}
+.btn:disabled{opacity:.45;cursor:default}
+.tools-row{display:flex;flex-wrap:wrap;gap:6px}
+.add-row{padding:16px 0}
+dialog{border:1px solid var(--muted);border-radius:8px;background:var(--bg);color:var(--ink);padding:0;width:min(580px,calc(100vw - 32px));max-height:calc(100% - 32px)}
+dialog::backdrop{background:rgba(0,0,0,.55)}
+dialog form{display:flex;flex-direction:column;gap:14px;padding:22px}
+dialog h2{font-size:1.7rem}
+.field{display:flex;flex-direction:column;gap:4px;font-size:.92rem;font-weight:500}
+.field small{font-weight:400;color:var(--muted);font-size:.85rem}
+.field input,.field select,.field textarea{font:inherit;font-size:1rem;font-weight:400;padding:8px 10px;border:1px solid var(--muted);border-radius:5px;background:var(--field);color:var(--ink);width:100%}
+.field textarea{resize:vertical;min-height:72px}
+.pair{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px}
+.dlg-actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding-top:4px}
+.dlg-actions .push{margin-left:auto}
+
+
+/* ---------- lectures (own view at #forelesninger) ---------- */
+.lec-intro{display:flex;flex-direction:column;gap:12px}
+.lec-intro p{margin:0;color:var(--muted);max-width:60ch}
+.lec-search{display:flex;flex-direction:column;gap:4px;font-size:.92rem;font-weight:500;max-width:420px}
+.lec-search input{font:inherit;font-size:1rem;font-weight:400;padding:8px 10px;border:1px solid var(--muted);border-radius:5px;background:var(--field);color:var(--ink);width:100%}
+.lec-course{scroll-margin-top:16px;outline-offset:6px}
+.lec-meta{font-size:.9rem}
+.lec-list{list-style:none;margin:0;padding:0}
+.lec-row{display:grid;grid-template-columns:44px minmax(0,1fr) auto;gap:2px 14px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--line)}
+.lec-n{font-stretch:62%;font-weight:700;font-size:1.2rem;line-height:1.1;font-variant-numeric:tabular-nums;color:var(--muted)}
+.lec-t{font-weight:500;color:var(--ink);text-decoration:none;overflow-wrap:anywhere}
+.lec-t::after{content:"\00a0\2197";color:var(--accent)}
+.lec-t:hover{color:var(--accent);text-decoration:underline}
+.lec-w{font-size:.88rem;color:var(--muted);white-space:nowrap}
+.lec-sub{margin:26px 0 0;padding-bottom:8px;font-stretch:75%;font-weight:600;font-size:.95rem;color:var(--muted);border-bottom:2px solid var(--ink)}
+.lec-next{margin:14px 0 0;color:var(--muted);font-size:.93rem;max-width:64ch}
+.lec-next b{font-weight:600;color:var(--ink)}
+.lec-none{margin:0;color:var(--muted)}
+.lec-jump{margin:0;font-size:.95rem}
+.lec-course.hit .lec-list{background:var(--accent-soft)}
+
+/* ---------- study calendar (owner only, live from TimeEdit) ---------- */
+.cal-status{display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center;margin:0;font-size:.92rem;color:var(--muted)}
+.cal-status.warn{color:var(--danger)}
+.cal-chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{appearance:none;font:inherit;font-size:.88rem;font-weight:500;padding:5px 12px;border-radius:999px;border:1px solid var(--muted);background:transparent;color:var(--ink);cursor:pointer}
+.chip:hover{background:var(--accent-soft)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.cal-day{margin:18px 0 0;padding-bottom:4px;font-weight:600;font-size:1rem;border-bottom:1px solid var(--line)}
+.cal-row{display:grid;grid-template-columns:104px minmax(0,1fr) auto;gap:2px 14px;align-items:baseline;padding:11px 0;border-bottom:1px solid var(--line)}
+.cal-time{font-variant-numeric:tabular-nums;font-weight:600;font-size:.95rem}
+.cal-time small{display:block;font-weight:400;color:var(--muted);font-size:.85rem}
+.cal-body{min-width:0;overflow-wrap:anywhere}
+.cal-code{font-stretch:75%;font-weight:700}
+.cal-meta{font-size:.88rem;color:var(--muted)}
+.cal-kind{font-size:.85rem;color:var(--muted);white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.cal-kind::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--led-planned)}
+.k-lab .cal-kind::before{background:var(--led-active)}
+.k-exam .cal-kind::before{background:var(--led-paused)}
+.k-other .cal-kind::before{background:var(--led-idea)}
+.cal-row.past{opacity:.5}
+.cal-strip{display:flex;flex-direction:column;gap:2px;margin:-18px 0 0;padding:12px 16px;border-left:3px solid var(--led-active);background:var(--field);color:var(--ink);text-decoration:none;border-radius:0 6px 6px 0;width:fit-content;max-width:100%}
+.cal-strip:hover{background:var(--accent-soft)}
+.cal-strip small{color:var(--muted);font-size:.85rem}
+.cal-strip span{overflow-wrap:anywhere}
+@media (max-width:619px){.cal-row{grid-template-columns:72px minmax(0,1fr)}.cal-kind{display:none}}
+
+.contact{display:flex;flex-wrap:wrap;gap:6px 22px;margin:0;padding:0;list-style:none;font-weight:500}
+.contact a{text-decoration-thickness:1px;text-underline-offset:3px}
+.links{display:flex;flex-wrap:wrap;gap:4px 18px;margin:0;padding:0;list-style:none;font-size:.95rem;font-weight:500}
+.links a{text-underline-offset:3px}
+
+/* ---------- live agent status ---------- */
+.live{display:inline-flex;align-items:center;gap:8px;margin:0;font-size:.93rem;color:var(--muted)}
+.live::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--led-active)}
+.live.busy{color:var(--ink);font-weight:600}
+@media (prefers-reduced-motion:no-preference){.live.busy::before{animation:link .8s ease-in-out infinite}}
 @media (min-width:620px){
   .entry{grid-template-columns:132px minmax(0,1fr)}
   .id{flex-direction:column;justify-content:flex-start;align-items:flex-start;gap:6px}
@@ -133,331 +203,648 @@ footer{color:var(--muted);font-size:.88rem}
   .group-head{position:sticky;top:max(16px,env(safe-area-inset-top,0px));align-self:start;padding-top:14px}
 }
 </style>
-</head>
-<body>
 <div id="root"></div>
-<noscript><p style="padding:16px">Denne siden trenger JavaScript for å vise prosjektene.</p></noscript>
-<!-- Innholdet på siden. Endre teksten her, lagre og push. Status: active, paused, planned, idea eller done.
-     Lenker: "links": [["Tekst", "https://..."]] på hvert prosjekt, "contact" øverst. Bare https-, http- og mailto-lenker vises. -->
-<script type="application/json" id="state">
-{
-  "title": "Fredriks arbeidsbenk",
-  "lede": "Jeg studerer cybersikkerhet ved Høyskolen Kristiania i Oslo. Her ligger labarbeidet og prosjektene fra studiet, det jeg bygger på fritiden, og agentene jeg setter opp.",
-  "contact": [
-    [
-      "LinkedIn",
-      "https://www.linkedin.com/in/fredrik-luis-westrum-8576263b5/"
-    ]
-  ],
-  "updated": "2026-11-12",
-  "groups": [
-    {
-      "id": "skole",
-      "title": "Skoleprosjekter",
-      "note": "Emner og innleveringer fra bachelor i cybersikkerhet, 2025 til 2028.",
-      "empty": "",
-      "items": [
-        {
-          "id": "eth2100",
-          "code": "ETH2100",
-          "title": "Etisk hacking: pentest-lab",
-          "status": "active",
-          "text": "Ukentlige labøvelser mot bevisst sårbare maskiner, pluss en egen Active Directory-lab bygget i VMware med domenekontroller på Windows Server.",
-          "tools": [
-            "Kali Linux",
-            "nmap",
-            "Nikto",
-            "OWASP ZAP",
-            "Metasploit",
-            "BloodHound",
-            "Nessus"
-          ],
-          "more": [
-            "Kartla Metasploitable med nmap: over 25 åpne porter, blant annet vsftpd 2.3.4-bakdøren (CVE-2011-2523), bekreftet med NSE-skript.",
-            "Kjørte ZAP Spider og Active Scan mot DVWA: 30 varsler, 5 av dem høy alvorlighet. Sorterte funnene i reelle sårbarheter og sannsynlige falske positiver.",
-            "Satte opp eget domene og egen domenekontroller for å øve på AD-angrep fra Kali på et isolert host-only-nett.",
-            "Skrev en pentestrapport for en webapplikasjon og presenterte funnene i en kundepresentasjon."
-          ],
-          "spec": [],
-          "links": []
-        },
-        {
-          "id": "cyb2100",
-          "code": "CYB2100",
-          "title": "Cyberforsvar",
-          "status": "active",
-          "text": "Høstsemesteret 2026. Deteksjon og analyse: nettverkstrafikk, ondsinnede filer og logger fra angrep jeg kjørte mot min egen server.",
-          "tools": [
-            "Splunk",
-            "Hydra",
-            "fail2ban",
-            "Wireshark",
-            "YARA",
-            "Office- og PDF-analyse"
-          ],
-          "more": [
-            "Kjørte SSH-brute force med Hydra mot min egen server, hentet auth.log inn i Splunk og laget en tidslinje over angrepet og blokkeringene fra fail2ban.",
-            "Løste en Wireshark-CTF og skrev YARA-regler.",
-            "Analyserte ondsinnede Office- og PDF-filer."
-          ],
-          "spec": [],
-          "links": []
-        },
-        {
-          "id": "sky2100",
-          "code": "SKY2100",
-          "title": "Skysikkerhet",
-          "status": "active",
-          "text": "Høstsemesteret 2026. Satte opp og herdet egne servere og tjenester, fra brannmur og SSH til containere bak HTTPS.",
-          "tools": [
-            "Ubuntu Server",
-            "Nginx",
-            "UFW",
-            "SSH",
-            "fail2ban",
-            "Docker",
-            "Nextcloud",
-            "HTTPS"
-          ],
-          "more": [
-            "Herdet en Ubuntu-server: brannmur med UFW, strammere SSH-oppsett og fail2ban.",
-            "Testet Nginx under last.",
-            "Satte opp Nextcloud i Docker bak HTTPS."
-          ],
-          "spec": [],
-          "links": []
-        },
-        {
-          "id": "pgr112",
-          "code": "PGR112",
-          "title": "RussRental: utleiesystem i Java",
-          "status": "done",
-          "text": "Eksamensprosjekt i objektorientert programmering. Et administrasjonssystem for utleie med MySQL-database, bygget i IntelliJ.",
-          "tools": [
-            "Java",
-            "MySQL",
-            "JDBC",
-            "DAO-mønster"
-          ],
-          "more": [
-            "Arv og subklasser for ulike typer utleieobjekter, med egen feilhåndtering.",
-            "Ryddet opp med try-with-resources i filparseren og samlet databasetilkoblingene i DAO-laget.",
-            "Levert med fire videoer: demo, forklaring av arv, unntakshåndtering og live-koding av en ny subklasse."
-          ],
-          "spec": [],
-          "links": []
-        },
-        {
-          "id": "tk2100",
-          "code": "TK2100",
-          "title": "Websikkerhet",
-          "status": "done",
-          "text": "Praktiske øvelser i SQL-injeksjon mot en lokal øvingsapp, blant annet omgåelse av validering på klientsiden. Teori om XSS, CSRF, sesjonskapring og sertifikater.",
-          "tools": [
-            "SQL-injeksjon",
-            "XSS",
-            "CSRF"
-          ],
-          "more": [],
-          "spec": [],
-          "links": []
-        },
-        {
-          "id": "pgr215",
-          "code": "PGR215",
-          "title": "Datainnsamling og analyse",
-          "status": "planned",
-          "text": "Emne neste studieår.",
-          "tools": [],
-          "more": [],
-          "spec": [],
-          "links": []
-        },
-        {
-          "id": "pgr216",
-          "code": "PGR216",
-          "title": "KI og cybersikkerhet",
-          "status": "planned",
-          "text": "Emne neste studieår.",
-          "tools": [],
-          "more": [],
-          "spec": [],
-          "links": []
-        }
-      ]
-    },
-    {
-      "id": "prosjekter",
-      "title": "Sideprosjekter",
-      "note": "Ting jeg bygger utenom studiet.",
-      "empty": "",
-      "items": [
-        {
-          "id": "matmeg",
-          "code": "MatMeg",
-          "title": "Middagsforslag ut fra ukens tilbud",
-          "status": "active",
-          "text": "Norsk webapp som foreslår oppskrifter basert på hva som er på tilbud i butikkene du velger: Rema 1000, Kiwi, Meny og Bunnpris. Rettene rangeres etter hvor mange ingredienser som er på tilbud.",
-          "tools": [
-            "API-integrasjon",
-            "Kassal.app",
-            "JSON",
-            "PDF-uttrekk"
-          ],
-          "more": [
-            "Fire løst koblede lag: innhenting, normalisering, forhåndsberegnet matching og en frontend som lagrer valgene lokalt.",
-            "Henter strukturert tilbudsdata fra kundeavisene. Tekstlaget brukes først, med bildetolkning som reserve når PDF-en ikke har lesbar tekst."
-          ],
-          "spec": [],
-          "links": []
-        },
-        {
-          "id": "gdpr",
-          "code": "GDPR",
-          "title": "Innsyn i egne data",
-          "status": "planned",
-          "text": "Ber selskaper og datameglere om innsyn i hva de har lagret om meg, for så å analysere hva som faktisk samles inn og hvordan det henger sammen.",
-          "tools": [
-            "Personvern",
-            "GDPR artikkel 15",
-            "Dataanalyse"
-          ],
-          "more": [],
-          "spec": [],
-          "links": []
-        },
-        {
-          "id": "nettbutikk",
-          "code": "Nettbutikk",
-          "title": "Nettbutikk for treningstilbehør",
-          "status": "idea",
-          "text": "Shakere, strikker, kalk og løftestropper. Foreløpig på idéstadiet.",
-          "tools": [],
-          "more": [],
-          "spec": [],
-          "links": []
-        }
-      ]
-    },
-    {
-      "id": "agenter",
-      "title": "Agenter",
-      "note": "Hva hver agent skal gjøre, hva som starter den, og hvor langt den har kommet.",
-      "empty": "Neste agent får sin egen port i panelet når den er planlagt.",
-      "items": [
-        {
-          "id": "canvas",
-          "code": "Canvas",
-          "title": "Forelesningshenter for Canvas",
-          "status": "paused",
-          "text": "",
-          "tools": [],
-          "more": [],
-          "spec": [
-            [
-              "Formål",
-              "Laste ned nye forelesninger fra Canvas som PDF og legge dem i riktig mappe i Google Drive, klare for notatboken til hvert emne."
-            ],
-            [
-              "Starter",
-              "Hver dag, på tidsplan."
-            ],
-            [
-              "Verktøy",
-              "Python, Canvas API, Google Drive"
-            ],
-            [
-              "Venter på",
-              "API-token fra skolens IT-avdeling. Studenter kan ikke opprette egne, så jeg har bedt om tilgang i stedet for å gå rundt sperren."
-            ]
-          ],
-          "links": []
-        }
-      ]
-    }
-  ]
-}
-</script>
-<script>
+<script type="application/json" id="state">{"title": "Fredriks arbeidsbenk", "lede": "Jeg studerer cybersikkerhet ved Høyskolen Kristiania i Oslo. Her ligger labarbeidet og prosjektene fra studiet, det jeg bygger på fritiden, og agentene jeg setter opp.", "contact": [["LinkedIn", "https://www.linkedin.com/in/fredrik-luis-westrum-8576263b5/"]], "updated": "2026-11-13", "groups": [{"id": "skole", "title": "Skoleprosjekter", "note": "Emner og innleveringer fra bachelor i cybersikkerhet, 2025 til 2028.", "empty": "", "items": [{"id": "eth2100", "code": "ETH2100", "title": "Etisk hacking: pentest-lab", "status": "active", "text": "Ukentlige labøvelser mot bevisst sårbare maskiner, pluss en egen Active Directory-lab bygget i VMware med domenekontroller på Windows Server.", "tools": ["Kali Linux", "nmap", "Nikto", "OWASP ZAP", "Metasploit", "BloodHound", "Nessus"], "more": ["Kartla Metasploitable med nmap: over 25 åpne porter, blant annet vsftpd 2.3.4-bakdøren (CVE-2011-2523), bekreftet med NSE-skript.", "Kjørte ZAP Spider og Active Scan mot DVWA: 30 varsler, 5 av dem høy alvorlighet. Sorterte funnene i reelle sårbarheter og sannsynlige falske positiver.", "Satte opp eget domene og egen domenekontroller for å øve på AD-angrep fra Kali på et isolert host-only-nett."], "spec": []}, {"id": "cyb2100", "code": "CYB2100", "title": "Cyberforsvar", "status": "active", "text": "Høstsemesteret 2026. Beskrivelse av arbeidet kommer.", "tools": [], "more": [], "spec": []}, {"id": "sky2100", "code": "SKY2100", "title": "Skysikkerhet", "status": "active", "text": "Høstsemesteret 2026. Beskrivelse av arbeidet kommer.", "tools": [], "more": [], "spec": []}, {"id": "pgr112", "code": "PGR112", "title": "RussRental: utleiesystem i Java", "status": "done", "text": "Eksamensprosjekt i objektorientert programmering. Et administrasjonssystem for utleie med MySQL-database, bygget i IntelliJ.", "tools": ["Java", "MySQL", "JDBC", "DAO-mønster"], "more": ["Arv og subklasser for ulike typer utleieobjekter, med egen feilhåndtering.", "Ryddet opp med try-with-resources i filparseren og samlet databasetilkoblingene i DAO-laget.", "Levert med fire videoer: demo, forklaring av arv, unntakshåndtering og live-koding av en ny subklasse."], "spec": []}, {"id": "tk2100", "code": "TK2100", "title": "Websikkerhet", "status": "done", "text": "Praktiske øvelser i SQL-injeksjon mot en lokal øvingsapp, blant annet omgåelse av validering på klientsiden. Teori om XSS, CSRF, sesjonskapring og sertifikater.", "tools": ["SQL-injeksjon", "XSS", "CSRF"], "more": [], "spec": []}, {"id": "pgr215", "code": "PGR215", "title": "Datainnsamling og analyse", "status": "planned", "text": "Emne neste studieår.", "tools": [], "more": [], "spec": []}, {"id": "pgr216", "code": "PGR216", "title": "KI og cybersikkerhet", "status": "planned", "text": "Emne neste studieår.", "tools": [], "more": [], "spec": []}]}, {"id": "prosjekter", "title": "Sideprosjekter", "note": "Ting jeg bygger utenom studiet.", "empty": "", "items": [{"id": "matmeg", "code": "MatMeg", "title": "Middagsforslag ut fra ukens tilbud", "status": "active", "text": "Norsk webapp som foreslår oppskrifter basert på hva som er på tilbud i butikkene du velger: Rema 1000, Kiwi, Meny og Bunnpris. Rettene rangeres etter hvor mange ingredienser som er på tilbud.", "tools": ["API-integrasjon", "Kassal.app", "JSON", "PDF-uttrekk"], "more": ["Fire løst koblede lag: innhenting, normalisering, forhåndsberegnet matching og en frontend som lagrer valgene lokalt.", "Henter strukturert tilbudsdata fra kundeavisene. Tekstlaget brukes først, med bildetolkning som reserve når PDF-en ikke har lesbar tekst."], "spec": []}, {"id": "gdpr", "code": "GDPR", "title": "Innsyn i egne data", "status": "planned", "text": "Ber selskaper og datameglere om innsyn i hva de har lagret om meg, for så å analysere hva som faktisk samles inn og hvordan det henger sammen.", "tools": ["Personvern", "GDPR artikkel 15", "Dataanalyse"], "more": [], "spec": []}, {"id": "nettbutikk", "code": "Nettbutikk", "title": "Nettbutikk for treningstilbehør", "status": "idea", "text": "Shakere, strikker, kalk og løftestropper. Foreløpig på idéstadiet.", "tools": [], "more": [], "spec": []}]}, {"id": "agenter", "title": "Agenter", "note": "Hva hver agent gjør, hva som starter den, og hvor langt den har kommet. MatMeg-agentene er underagenter i Claude Code; lyset blinker raskt mens en av dem jobber.", "empty": "Neste agent får sin egen port i panelet når den er planlagt.", "items": [{"id": "canvas", "code": "Canvas", "title": "Forelesningshenter for Canvas", "status": "paused", "text": "", "tools": [], "more": [], "spec": [["Formål", "Laste ned nye forelesninger fra Canvas som PDF og legge dem i riktig mappe i Google Drive, klare for notatboken til hvert emne."], ["Starter", "Hver dag, på tidsplan."], ["Verktøy", "Python, Canvas API, Google Drive"], ["Venter på", "API-token fra skolens IT-avdeling. Studenter kan ikke opprette egne, så jeg har bedt om tilgang i stedet for å gå rundt sperren."]]}, {"id": "datainnhenting", "code": "Innhenting", "title": "MatMeg: henter ukens tilbud", "status": "active", "text": "", "tools": [], "more": [], "spec": [["Formål", "Holder tilbudene i MatMeg ferske. Søker opp hver ingrediens fra oppskriftene i Kassal.app og regner en vare som tilbud når prisen er minst 5 % under den høyeste i prishistorikken."], ["Starter", "Når en Claude Code-økt i MatMeg gir den en oppgave om innhenting eller tilbudsdata."], ["Sikring", "Skriver bare når hele innhentingen for en butikk er ferdig, i én transaksjon. Feiler mer enn 20 % av søkene, endres ingenting, og tom respons betyr at det gamle beholdes."], ["Verktøy", "Node.js, Kassal.app-API, database"]]}, {"id": "matching", "code": "Matching", "title": "MatMeg: kobler ingredienser til tilbud", "status": "active", "text": "", "tools": [], "more": [], "spec": [["Formål", "Sørger for at en ingrediens i en oppskrift treffer riktig tilbudsvare, og avviser smaker, snacks, ferdigretter og barnemat selv om ordet står i navnet."], ["Starter", "Når forslagene treffer feil eller for lite, eller et nytt feiltreff skal inn som testtilfelle."], ["Arbeidsmåte", "Testdrevet: nytt tilfelle legges i fasiten først, deretter minst mulig endring i reglene. Ingen tilfeller som var riktige får bli gale."], ["Krav", "Under 100 ms for 108 oppskrifter mot rundt 700 tilbud, uten AI-kall."]]}, {"id": "frontend", "code": "Frontend", "title": "MatMeg: sidene brukeren ser", "status": "active", "text": "", "tools": [], "more": [], "spec": [["Formål", "Endringer i grensesnittet: oppskrifter, tilbud, handleliste, ukesmeny, innlogging og PWA-filene."], ["Starter", "Når en Claude Code-økt i MatMeg skal endre noe under frontend/."], ["Regler", "Mobil først, ingen rammeverk eller byggesteg, alt fra API-et escapes før det vises, og streng CSP uten inline-skript. Spør før utseendet endres."]]}, {"id": "gjennomgang", "code": "Kontroll", "title": "MatMeg: sikkerhetsgjennomgang før commit", "status": "active", "text": "", "tools": [], "more": [], "spec": [["Formål", "Leser endringer med kritisk blikk på tilgangskontroll, hemmeligheter, inndata og drift, og rapporterer funn sortert etter alvorlighet, med hva som er bekreftet og hva som bare er mistanke."], ["Starter", "Før commit eller utrulling."], ["Tilgang", "Bare lesing og tester. Endrer ingen filer, skriver ikke til databasen og installerer ingenting."]]}]}], "lectures": {"note": "Foilene fra hver forelesning i høstsemesteret 2026, sortert per emne. Lenkene åpner PDF-ene i Google Drive.", "courses": [{"id": "eth2100", "code": "ETH2100", "title": "Etisk hacking", "folder": "1s8D0fPvQ-tRYPD3hjiTqr7t7hsADuHK-", "items": [{"n": "01", "week": 35, "title": "What Hats Are You", "file": "1iCCPCVXzEVFqnpE2TodzpROnIZe_pAd5"}, {"n": "02", "week": 35, "title": "My Name Is Bond", "file": "1KjJ5gd5tdVXQlfT4oDOnVz33fBKSr0cQ"}, {"n": "03", "week": 36, "title": "Your Internets Belong To Us, del 1", "file": "1ef6HaJo0Y7ws8OqPdLEc2UULCA-DZEQx"}, {"n": "04", "week": 36, "title": "Your Internets Belong To Us, del 2", "file": "1R2NDeHm8PnjuANPeeFplYEV9bXdHOZ0O"}, {"n": "05", "week": 37, "title": "Your Internets Belong To Us, del 3", "file": "1FkmupvOWt0MInI6ZfI_qjmOKZ-dkmGQ_"}, {"n": "06", "week": 37, "title": "Black Arts of IT", "file": "10MXTkb1IQSHbKE2goOqpgIJGGUvKLN9j"}, {"n": "07", "week": 38, "title": "Your Internets Belong To Us, del 4", "file": "1jBQ4mjZKCLBw70ngJhknFh4SN_wKcsDc"}, {"n": "08", "week": 38, "title": "Obscurity What I Want", "file": "1_Ro5WSr1yWcXxAgtYMz3czFNzgaXb8dS"}, {"n": "09", "week": 39, "title": "A Pineapple for the Rest of Us", "file": "1KMTfS3mtmsYiv4lCkCvqKvexOeRGknqp"}, {"n": "10", "week": 39, "title": "Can't Do That, Dave", "file": "1skmif2P57kg-qqjaEbrgkdtS--qh6r2H"}, {"n": "11", "week": 40, "title": "Into the Rabbit Hole, del 1", "file": "1e3j92XeeZ4q1yT37Sd92Yb74T7OrPNFe"}, {"n": "12", "week": 40, "title": "Buried Viking Treasure", "file": "1DdoeT_f8C66IIr0rqwe2FOb63c-KWbAA"}, {"n": "13", "week": 41, "title": "Open or Closed", "file": "1bZ6ORlZMUhFDfnkzMbb2a-ffA_61QLLm"}, {"n": "14", "week": 41, "title": "I Will Let Myself In", "file": "1JYprfK0vdo945hbUo3L4x_HRCyE6Oiw6"}, {"n": "15", "week": 42, "title": "Into the Rabbit Hole, del 2", "file": "1iOQRgtW5F8d0dHXz5r9U4RsNE-ocThhG"}, {"n": "16", "week": 42, "title": "Deeper into the Rabbit Hole, del 1", "file": "15xkBVbfZzIFOFlK6-B61Yx0VmHikTwBj"}, {"n": "17", "week": 43, "title": "What the Duck", "file": "1H1I0RNl02LNcGXDjCd5FPmO14iaoTpDu"}, {"n": "18", "week": 43, "title": "What's All the Fuzz About Cloud", "file": "1PfyKdCRq1xERl6W3gTRo1nsSYsUfXXAS"}], "extra": [{"n": "", "week": 36, "title": "Eksempel på sikkerhetsrapport", "file": "1gT1eSo22lq_SarY6FeJ_xpSO10LPNlD1"}, {"n": "", "week": 37, "title": "Arbeidskrav i ETH2100", "file": "1XWc7eFuBtoK79w7saMI0b5vaojT2eTYM"}, {"n": "", "week": null, "title": "Eksempel på pentest-tillatelse (Word)", "file": "1KtpMMSjQn7x6umR4RBwM7MzMKkpsZVSf"}], "upcoming": []}, {"id": "cyb2100", "code": "CYB2100", "title": "Cyberforsvar", "folder": "1oICkM_IsVY02_eY9rA9Kp3Y0Qb-VzGe-", "items": [{"n": "1.1", "week": null, "title": "Introduksjon til cyberforsvar", "file": "1X7McDcWpJGMcUOo8PEbW9X0QuTiZhL6R"}, {"n": "1.2", "week": null, "title": "Sikkerhetsbegreper og rammeverk", "file": "14DQji_45x7wtdPX-dNuT9hX7HmDbbrGQ"}, {"n": "2.1", "week": null, "title": "Trussellandskapet og trusselaktører", "file": "1pQ5TuDW9oVoYojDKb35csK5gGYI-p1mH"}, {"n": "2.2", "week": null, "title": "Trusselmodellering: Cyber Kill Chain, diamantmodellen, MITRE ATT&CK", "file": "10QnOMJ9bytknH1a4tkckWzqgZw034ioI"}, {"n": "3.1", "week": null, "title": "Hva er en SOC", "file": "1NU0xStEaafUEOa_5qe0uJ1VWqFuxLyPL"}, {"n": "3.2", "week": null, "title": "SOC-tjenester", "file": "1Ird6bPi5y_-6RjL_GqahLclL_EO_UBlG"}, {"n": "4.1", "week": null, "title": "Data og logger", "file": "1t9k3pbgfpyZvIlyiJvPnePV7UUXSqSa4"}, {"n": "4.2", "week": null, "title": "SIEM", "file": "1EKEBRfG2fHSWw0hq2H82QRHNjA9PKKgn"}, {"n": "5.1", "week": null, "title": "Splunk", "file": "1j-TNGg0EXaFvPseizt2FaektCwECozi-"}, {"n": "5.2", "week": null, "title": "Grunnleggende søk i Splunk", "file": "1-dPUMGEUeRshaovi7bIs9n1v-oekKpKj"}, {"n": "6.1", "week": null, "title": "Hendelseshåndtering", "file": "1wGboQnjfib4O4XDo-p3UUgXw7EF5Mb84"}, {"n": "6.2", "week": null, "title": "Hendelseshåndtering 2: triage og playbooks", "file": "1_9wEGbGFiRWv611ZIebG3PnA6vVgVW6R"}, {"n": "7.1", "week": null, "title": "Digital etterforskning", "file": "1v0nbxwp_poddXI-d3bmy-i-CIZzoe_CE"}, {"n": "7.2", "week": null, "title": "Digital etterforskning 2: disk, minne og tidslinje", "file": "1AB1goie3XEQid8EFrzf6gKemSG8IIEgC"}, {"n": "8.1", "week": null, "title": "Skadevare", "file": "1mLRFXU4a5mwGwxJRoDpZo2zMCddAhmva"}, {"n": "8.2", "week": null, "title": "Løsepengevirus", "file": "16tR2pvLfTlCsvSI2EUCaBNXqzeY25owL"}, {"n": "9.1", "week": null, "title": "Threat intelligence og threat hunting", "file": "1UDOAex3lVv5T2ZM0UMuTTzUk-q4xOoui"}, {"n": "9.2", "week": null, "title": "Tillegg til løsepengevirus (8.2)", "file": "1BBOVHFJQ7zvBXoaovZp5rllNtbzAI3OH"}], "extra": [], "upcoming": ["Lateral movement og forsvarbar arkitektur", "Sårbarhetshåndtering og systemherding", "Repetisjon"]}, {"id": "sky2100", "code": "SKY2100", "title": "Skysikkerhet", "folder": "1JYy_eiLoE8uNYdaaA4oanvtfIJNLxcMN", "items": [{"n": "01", "week": null, "title": "Introduksjon", "file": "11ABYUWZhMOeI4QZahw_ltls1olQ3OIi4"}, {"n": "02", "week": null, "title": "Linux og infrastruktur", "file": "1eE_sAg6GKGsk_sFnMNLtD6stgRvA7BFq"}, {"n": "03", "week": null, "title": "Webtjenester, last og DDoS", "file": "13dP-AIUn1PIFgnrlN7pfPvgRAlx95QWD"}, {"n": "04", "week": null, "title": "Nettverk og brannmurkontroller", "file": "1WHYyruIiyFh90yZeP4YBG6ejp0lbtlsz"}, {"n": "05", "week": null, "title": "Skybasert arkitektur kontra lift-and-shift", "file": "1eKyxFur6IrJ02JjdsNPeXEdAD9BvKrdY"}, {"n": "06", "week": null, "title": "TLS, data i transitt og Wireshark", "file": "17DYuIh-mvYn-NLxs_vQGP8KDAlHlh-xq"}, {"n": "07", "week": null, "title": "Herding og tilgangskontroll", "file": "12vo8_poJD-e2UrlU4IZ_mZlPGFBlgEFa"}, {"n": "08", "week": null, "title": "DevSecOps, WAF og sikre apper", "file": "1QmpL_PWz-yItJbq_zExz6dXUYFbG1_w4"}, {"n": "09", "week": null, "title": "Sikkerhetsovervåking og IDS", "file": "12lQhNSrLY94CjaD29Smb9mgeDKACCEKH"}, {"n": "10", "week": null, "title": "Hendelseshåndtering og loggtidslinje", "file": "1Y0rh4Ld5qoPkEPJVve2pDMGSw3w4nQNM"}], "extra": [], "upcoming": ["Robusthet, RAID 1 og backup", "Sikkerhetsautomatisering og KI", "Samlet case og eksamensverksted"]}]}}</script>
+<script id="app">
 const STATUS = { active:"Pågår", paused:"Pauset", planned:"Planlagt", idea:"Idé", done:"Fullført" };
+const RESERVED = ["oversikt","forelesninger","timeplan","settings","sidebar","customize","upgrade","downloads"];
+const STASH = "arbeidsbenk-draft";
+const LEC_ROUTE = "forelesninger";
+const driveFile = id => "https://drive.google.com/file/d/" + encodeURIComponent(id) + "/view";
+const driveFolder = id => "https://drive.google.com/drive/folders/" + encodeURIComponent(id);
+
 const state = JSON.parse(document.getElementById("state").textContent);
+let draft = null;        // a working copy while the owner edits
+let canEdit = false, artifact = null, dirty = false, saving = false;
+let notice = "", noticeWarn = false, pending = null;
+
 const root = document.getElementById("root");
+const dlg = document.createElement("dialog");
+dlg.id = "dlg";
+document.body.appendChild(dlg);
+
+const cur = () => draft || state;
 const esc = s => String(s == null ? "" : s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const clone = o => JSON.parse(JSON.stringify(o));
 const safeUrl = u => /^(https?:|mailto:)/i.test(String(u || "").trim()) ? String(u).trim() : "";
 const linkList = (list, cls) => {
-  const items = (list || []).map(([label, url]) => {
-    const href = safeUrl(url);
+  const items = (Array.isArray(list) ? list : []).map(p => {
+    const href = Array.isArray(p) ? safeUrl(p[1]) : "";
     if (!href) return "";
     const ext = /^https?:/i.test(href) ? ' target="_blank" rel="noopener"' : "";
-    return `<li><a href="${esc(href)}"${ext}>${esc(label)}</a></li>`;
+    return `<li><a href="${esc(href)}"${ext}>${esc(p[0])}</a></li>`;
   }).join("");
   return items ? `<ul class="${cls}">${items}</ul>` : "";
 };
-let pending = null;
+const lines = s => String(s || "").split("\n").map(x => x.trim()).filter(Boolean);
+const val = id => { const el = document.getElementById(id); return el ? el.value.trim() : ""; };
 
 function fmtDate(iso){
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
-  return m ? new Date(+m[1], +m[2] - 1, +m[3]).toLocaleDateString("nb-NO", { day:"numeric", month:"long", year:"numeric" }) : "";
+  if (!m) return "";
+  return new Date(+m[1], +m[2] - 1, +m[3]).toLocaleDateString("nb-NO", { day:"numeric", month:"long", year:"numeric" });
+}
+function today(){
+  const d = new Date(), p = n => String(n).padStart(2, "0");
+  return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate());
+}
+function findItem(id){
+  for (const g of cur().groups) { const i = g.items.findIndex(x => x.id === id); if (i >= 0) return { g, i, it: g.items[i] }; }
+  return null;
+}
+function groupSlug(title){
+  let s = title.toLowerCase().replace(/æ/g,"ae").replace(/ø/g,"o").replace(/å/g,"a").replace(/[^a-z0-9]+/g,"-").replace(/^-+|-+$/g,"");
+  if (!s || RESERVED.includes(s) || s.startsWith("comment-")) s = "gruppe";
+  let out = s, n = 2;
+  while (cur().groups.some(g => g.id === out)) out = s + "-" + n++;
+  return out;
+}
+
+/* ---------- live agent status: agent-status.json next to the page, written by a Claude Code hook ----------
+   Only works where the page and the file share a host (GitHub Pages). Elsewhere the fetch fails quietly. */
+const LIVE_FILE = "agent-status.json";
+const LIVE_STALE = 3 * 3600e3;      // a "running" agent with no stop for 3 hours is treated as stopped
+let live = null;
+async function loadLive(){
+  try {
+    const r = await fetch(LIVE_FILE + "?t=" + Date.now(), { cache: "no-store" });
+    if (!r.ok) return;
+    const j = await r.json();
+    if (j && j.agents && typeof j.agents === "object") { live = j; render(); }
+  } catch (e) {}
+}
+function liveFor(id){
+  const a = live && live.agents && live.agents[id];
+  if (!a) return null;
+  const start = a.lastStart ? new Date(a.lastStart) : null, end = a.lastEnd ? new Date(a.lastEnd) : null;
+  const busy = Number(a.running) > 0 && start && Date.now() - start < LIVE_STALE;
+  return { busy, start, end, runs: Number(a.runs) || 0 };
+}
+function liveWhen(d){
+  return d.toLocaleDateString("nb-NO", { day:"numeric", month:"short", timeZone:"Europe/Oslo" }) + " kl. " +
+    d.toLocaleTimeString("nb-NO", { hour:"2-digit", minute:"2-digit", timeZone:"Europe/Oslo" });
+}
+function liveLine(it){
+  const s = liveFor(it.id);
+  if (!s) return "";
+  if (s.busy) return `<p class="live busy">Jobber nå, startet ${esc(liveWhen(s.start))}</p>`;
+  const last = s.end || s.start;
+  if (!last) return "";
+  return `<p class="live">Sist brukt ${esc(liveWhen(last))}${s.runs ? " · " + s.runs + (s.runs === 1 ? " kjøring" : " kjøringer") : ""}</p>`;
+}
+function ledClass(it){
+  const s = liveFor(it.id);
+  return s ? (s.busy ? "busy" : "ready") : it.status;
+}
+
+/* ---------- lectures ---------- */
+function lecCourses(){ const L = cur().lectures; return L && Array.isArray(L.courses) ? L.courses : []; }
+function lecLink(it){
+  const c = lecCourses().find(x => x.id === it.id);
+  if (!c || !c.items.length) return "";
+  return `<p class="lec-jump"><a href="#${LEC_ROUTE}" data-act="lec" data-id="${esc(c.id)}">Forelesninger: ${c.items.length} PDF-er</a></p>`;
+}
+function lecRow(c, x){
+  const week = x.week ? "Uke " + x.week : "";
+  const q = [c.code, c.title, x.n, x.title, week].join(" ").toLowerCase();
+  return `<li class="lec-row" data-q="${esc(q)}">
+    <span class="lec-n">${esc(x.n)}</span>
+    <a class="lec-t" href="${esc(driveFile(x.file))}" target="_blank" rel="noopener">${esc(x.title)}</a>
+    <span class="lec-w">${esc(week)}</span></li>`;
+}
+function lecCourseHTML(c){
+  const extra = c.extra && c.extra.length
+    ? `<h3 class="lec-sub">Annet materiale</h3><ul class="lec-list">${c.extra.map(x => lecRow(c, x)).join("")}</ul>` : "";
+  const next = c.upcoming && c.upcoming.length
+    ? `<p class="lec-next"><b>Gjenstår:</b> ${c.upcoming.map(esc).join(" · ")}</p>` : "";
+  return `<section class="group lec-course" id="p-lec-${esc(c.id)}" tabindex="-1" aria-labelledby="h-lec-${esc(c.id)}">
+    <div class="group-head"><h2 id="h-lec-${esc(c.id)}">${esc(c.code)}</h2><p>${esc(c.title)}</p>
+      <p class="lec-meta">${c.items.length} forelesninger · <a href="${esc(driveFolder(c.folder))}" target="_blank" rel="noopener">Mappen i Drive</a></p></div>
+    <div class="entries"><ol class="lec-list">${c.items.map(x => lecRow(c, x)).join("")}</ol>${extra}${next}</div>
+  </section>`;
+}
+function lecturesHTML(){
+  const L = cur().lectures;
+  return `<div class="lec-intro"><h2>Forelesninger</h2>${L.note ? `<p>${esc(L.note)}</p>` : ""}
+      <label class="lec-search" for="lec-q">Søk i forelesningene
+        <input id="lec-q" type="search" placeholder="For eksempel Splunk, TLS eller uke 40" autocomplete="off"></label>
+      <p class="lec-none" id="lec-none" hidden>Ingen forelesninger passer søket.</p></div>`
+    + lecCourses().map(lecCourseHTML).join("");
+}
+function lecFilter(raw){
+  const words = raw.trim().toLowerCase().split(/\s+/).filter(Boolean);
+  let any = false;
+  root.querySelectorAll(".lec-course").forEach(sec => {
+    let n = 0;
+    sec.querySelectorAll(".lec-row").forEach(r => {
+      const hit = words.every(w => r.dataset.q.includes(w));
+      r.hidden = !hit; if (hit) n++;
+    });
+    sec.querySelectorAll(".lec-sub").forEach(h => {
+      const list = h.nextElementSibling;
+      h.hidden = !!list && ![...list.children].some(li => !li.hidden);
+    });
+    sec.hidden = n === 0; if (n) any = true;
+  });
+  const none = document.getElementById("lec-none");
+  if (none) none.hidden = any;
+}
+
+/* ---------- study calendar: only the owner sees it, read live from the TimeEdit feed in Google Calendar ---------- */
+const CAL_ROUTE = "timeplan";
+const CAL_SERVER = "Google Calendar";
+const CAL_FALLBACK = "bp8hr721hvlqj7ils3b1aloe0qhh3ru8@import.calendar.google.com";
+const CAL_TZ = "Europe/Oslo";
+const CAL_WEEKS = 8;
+const CAL_CACHE = { staleTime: 10 * 60e3, gcTime: 864e5 };
+const CAL_KIND = { lecture:"Forelesning", lab:"Øving", exam:"Eksamen", other:"Annet" };
+const CAL_DENY = ["needs_reauth","server_not_connected","selection_required","server_not_found","blocked_by_policy","not_in_manifest","approval_required"];
+const CAL_OFF = ["not_granted","capability_disabled","capability_removed"];
+const cal = { on:false, mcp:null, status:"idle", events:[], at:null, err:null, filter:"", input:null, unwatch:null, busy:false };
+
+const osloDay = d => d.toLocaleDateString("sv-SE", { timeZone: CAL_TZ });
+const osloTime = d => d.toLocaleTimeString("nb-NO", { hour:"2-digit", minute:"2-digit", timeZone: CAL_TZ });
+function keyDate(key){ const [y, m, d] = key.split("-").map(Number); return new Date(Date.UTC(y, m - 1, d, 12)); }
+function daysUntil(key){ return Math.round((keyDate(key) - keyDate(osloDay(new Date()))) / 864e5); }
+function dayLabel(key){
+  const n = daysUntil(key);
+  const long = keyDate(key).toLocaleDateString("nb-NO", { weekday:"long", day:"numeric", month:"long", timeZone:"UTC" });
+  if (n === 0) return "I dag, " + long;
+  if (n === 1) return "I morgen, " + long;
+  return long.charAt(0).toUpperCase() + long.slice(1);
+}
+const shortDate = key => keyDate(key).toLocaleDateString("nb-NO", { weekday:"short", day:"numeric", month:"short", timeZone:"UTC" });
+function isoWeek(key){
+  const t = keyDate(key), day = t.getUTCDay() || 7;
+  t.setUTCDate(t.getUTCDate() + 4 - day);
+  return Math.ceil((Math.floor((t - Date.UTC(t.getUTCFullYear(), 0, 1)) / 864e5) + 1) / 7);
+}
+function inDays(n){ return n === 0 ? "i dag" : n === 1 ? "i morgen" : n < 0 ? "" : "om " + n + " dager"; }
+
+/* TimeEdit puts everything in summary and location; other students' names are lines starting with ":" and are dropped. */
+function parseEvent(e){
+  if (!e || e.status === "cancelled" || !e.start) return null;
+  const s = e.start.dateTime || e.start.date, en = e.end && (e.end.dateTime || e.end.date);
+  if (!s) return null;
+  const sum = String(e.summary || "");
+  const m = /Emnekode:\s*([A-Za-z0-9-]+)\.?\s*(?:Emnenavn:\s*(.+))?/.exec(sum);
+  const lines = String(e.location || "").split("\n").map(x => x.trim()).filter(x => x && !x.startsWith(":"));
+  let activity = "", teacher = "", room = "", milestone = "";
+  for (const l of lines){
+    if (/^Und\.?\s*aktivitet:/i.test(l)) activity = l.replace(/^Und\.?\s*aktivitet:\s*/i, "");
+    else if (/^Underviser:/i.test(l)) teacher = l.replace(/^Underviser:\s*/i, "");
+    else if (/(ut|inn)levering/i.test(l)) milestone = l.replace(/\s*eksamensperiode/i, "");
+    else if (/eksamen/i.test(l) && !activity) activity = l;
+    else if (!room){
+      const rooms = [...l.matchAll(/([A-ZÆØÅ]{1,3}\d{2,4})\s+([^.,]+)\./g)].map(r => r[1] + " " + r[2].trim());
+      room = rooms.length ? [...new Set(rooms)].join(", ") : l;
+    }
+  }
+  const kind = /eksamen/i.test(activity) ? "exam" : /øving|lab/i.test(activity) ? "lab" : /forelesning/i.test(activity) ? "lecture" : "other";
+  const start = new Date(s);
+  if (isNaN(start)) return null;
+  return { id: String(e.id || s), start, end: en ? new Date(en) : null, allDay: !e.start.dateTime,
+    day: e.start.dateTime ? osloDay(start) : String(e.start.date),
+    code: m ? m[1].toUpperCase() : "", course: m && m[2] ? m[2].trim() : (m ? "" : sum),
+    activity: activity.replace(/\s+-\s+/g, ", "), teacher, room, milestone, kind };
+}
+function calWhat(x){
+  if (x.kind === "exam") return (x.activity || "Eksamen") + (x.milestone ? ", " + x.milestone.toLowerCase() : "");
+  return x.activity || CAL_KIND[x.kind];
+}
+function calList(){ return cal.events.filter(x => !cal.filter || x.code === cal.filter); }
+function calUpcoming(){ const now = new Date(); return cal.events.filter(x => (x.end || x.start) > now); }
+
+/* ---------- calendar: fetching ---------- */
+function calRange(){
+  return { start: osloDay(new Date()) + "T00:00:00", end: osloDay(new Date(Date.now() + CAL_WEEKS * 7 * 864e5)) + "T00:00:00" };
+}
+function calTake(res){
+  const p = res && res.payload;
+  const raw = p && Array.isArray(p.events) ? p.events : [];
+  cal.events = raw.map(parseEvent).filter(x => x && (x.code || x.kind !== "other")).sort((a, b) => a.start - b.start);
+  cal.at = res && res.cache ? res.cache.storedAt : Date.now();
+  cal.status = "ok"; cal.err = null;
+  render();
+}
+function calFail(err){
+  const code = (err && err.code) || "upstream_error";
+  if (CAL_OFF.includes(code)) { cal.on = false; if (cal.unwatch) cal.unwatch(); render(); return; }
+  if (CAL_DENY.includes(code)) cal.events = [];
+  cal.err = code; cal.status = "error";
+  render();
+}
+function calWatch(id){
+  if (cal.unwatch) cal.unwatch();
+  const r = calRange();
+  cal.input = { calendarId: id, startTime: r.start, endTime: r.end, orderBy: "startTime", pageSize: 250 };
+  cal.unwatch = cal.mcp.watchTool(CAL_SERVER, "list_events", cal.input, ev => {
+    if (ev.type === "data") calTake(ev.result); else calFail(ev.error);
+  }, { cache: CAL_CACHE, refetchInterval: 30 * 60e3 });
+}
+async function calStart(mcp){
+  cal.mcp = mcp; cal.on = true; cal.status = "loading"; cal.err = null;
+  render();
+  let id = CAL_FALLBACK;
+  try {
+    const r = await mcp.callTool(CAL_SERVER, "list_calendars", {}, { cache: { staleTime: 864e5, gcTime: 864e5 } });
+    const list = (r && r.payload && r.payload.calendars) || [];
+    const te = list.find(c => /^TimeEdit/i.test(String(c.summary || "")));
+    if (te && te.id) id = te.id;
+  } catch (e) {
+    if (e && (CAL_DENY.includes(e.code) || CAL_OFF.includes(e.code))) { calFail(e); return; }
+  }
+  calWatch(id);
+}
+async function calRefresh(){
+  if (!cal.mcp || cal.busy) return;
+  cal.busy = true; cal.status = "loading";
+  render();
+  try {
+    if (!cal.input) await calStart(cal.mcp);
+    else calTake(await cal.mcp.callTool(CAL_SERVER, "list_events", cal.input, { cache: Object.assign({ refresh: true }, CAL_CACHE) }));
+  } catch (e) { calFail(e); }
+  finally { cal.busy = false; render(); }
+}
+
+/* ---------- calendar: rendering ---------- */
+function calStatusHTML(){
+  const btn = label => `<button class="btn small" type="button" data-act="cal-refresh"${cal.busy ? " disabled" : ""}>${label}</button>`;
+  if (cal.err){
+    const msg = {
+      needs_reauth: "Google Kalender må kobles til på nytt. Det gjør du under Innstillinger → Koblinger i claude.ai.",
+      server_not_connected: "Google Kalender er ikke koblet til. Legg den til under Innstillinger → Koblinger i claude.ai.",
+      server_not_found: "Google Kalender-koblingen finnes ikke lenger. Legg den til på nytt under Innstillinger → Koblinger i claude.ai.",
+      selection_required: "Du har flere Google Kalender-koblinger. Velg hvilken siden skal bruke når claude.ai spør.",
+      not_in_manifest: "Siden har ikke lov til å lese kalenderen din i denne visningen.",
+      blocked_by_policy: "Organisasjonen din har sperret kalendertilgang for denne siden.",
+      approval_required: "Siden trenger godkjenningen din før den kan lese kalenderen."
+    }[cal.err] || (cal.events.length ? "Fikk ikke kontakt med Google Kalender. Viser sist hentede timeplan." : "Fikk ikke kontakt med Google Kalender akkurat nå.");
+    const action = cal.err === "approval_required" ? btn("Godkjenn og hent")
+      : ["needs_reauth","server_not_connected","server_not_found","not_in_manifest","blocked_by_policy"].includes(cal.err) ? "" : btn("Prøv igjen");
+    return `<p class="cal-status warn">${esc(msg)} ${action}</p>`;
+  }
+  if (cal.status === "loading" && !cal.events.length) return `<p class="cal-status">Henter timeplanen fra TimeEdit.</p>`;
+  return `<p class="cal-status">${cal.at ? "Hentet kl. " + esc(osloTime(new Date(cal.at))) + "." : ""} ${btn(cal.busy ? "Henter" : "Hent på nytt")}</p>`;
+}
+function calRow(x, withDate){
+  const past = (x.end || x.start) < new Date();
+  const time = x.allDay ? "Hele dagen" : osloTime(x.start) + (x.end && x.kind !== "exam" ? "–" + osloTime(x.end) : "");
+  const first = withDate ? `${esc(shortDate(x.day))}<small>${esc(time)}${inDays(daysUntil(x.day)) ? ", " + esc(inDays(daysUntil(x.day))) : ""}</small>` : esc(time);
+  const meta = [x.course && withDate ? x.course : "", x.room, x.teacher].filter(Boolean).map(esc).join(" · ");
+  return `<li class="cal-row k-${x.kind}${past ? " past" : ""}">
+    <span class="cal-time">${first}</span>
+    <div class="cal-body"><div><b class="cal-code">${esc(x.code)}</b> ${esc(calWhat(x))}</div>${meta ? `<div class="cal-meta">${meta}</div>` : ""}</div>
+    <span class="cal-kind">${esc(CAL_KIND[x.kind])}</span></li>`;
+}
+function timeplanHTML(){
+  const list = calList();
+  const codes = [...new Set(cal.events.map(x => x.code).filter(Boolean))].sort();
+  const chips = codes.length > 1 ? `<div class="cal-chips" role="group" aria-label="Vis emne">${["", ...codes].map(c =>
+    `<button class="chip" type="button" data-act="cal-filter" data-id="${esc(c)}" aria-pressed="${cal.filter === c}">${c ? esc(c) : "Alle emner"}</button>`).join("")}</div>` : "";
+  const now = new Date();
+  const exams = list.filter(x => x.kind === "exam" && (x.end || x.start) > now);
+  const examBody = exams.length ? `<ul class="lec-list">${exams.map(x => calRow(x, true)).join("")}</ul>`
+    : `<p class="empty">${cal.events.length ? "Ingen eksamensdatoer de neste " + CAL_WEEKS + " ukene." : ""}</p>`;
+  let days = "", lastWeek = null, lastDay = null;
+  for (const x of list){
+    const w = isoWeek(x.day);
+    if (w !== lastWeek){ if (lastDay) days += "</ul>"; days += `<h3 class="lec-sub">Uke ${w}</h3>`; lastWeek = w; lastDay = null; }
+    if (x.day !== lastDay){ if (lastDay) days += "</ul>"; days += `<h4 class="cal-day">${esc(dayLabel(x.day))}</h4><ul class="lec-list">`; lastDay = x.day; }
+    days += calRow(x, false);
+  }
+  if (lastDay) days += "</ul>";
+  if (!days) days = `<p class="empty">${cal.status === "ok" ? "Ingenting i timeplanen de neste " + CAL_WEEKS + " ukene." : ""}</p>`;
+  return `<div class="lec-intro"><h2>Timeplan</h2>
+      <p>Hentes direkte fra TimeEdit-kalenderen din, ${CAL_WEEKS} uker fram. Bare du ser denne delen; besøkende ser den ikke.</p>
+      ${calStatusHTML()}${chips}</div>
+    <section class="group" id="p-cal-exams" tabindex="-1" aria-labelledby="h-cal-exams">
+      <div class="group-head"><h2 id="h-cal-exams">Eksamen</h2><p>Utlevering og innlevering av hjemmeeksamener.</p></div>
+      <div class="entries">${examBody}</div></section>
+    <section class="group" id="p-cal-next" tabindex="-1" aria-labelledby="h-cal-next">
+      <div class="group-head"><h2 id="h-cal-next">Dag for dag</h2><p>Forelesninger, øvinger og eksamensdatoer.</p></div>
+      <div class="entries">${days}</div></section>`;
+}
+function calStripHTML(){
+  const up = calUpcoming();
+  if (!up.length) return "";
+  const line = (label, x) => `<span><small>${label}</small><br><b class="cal-code">${esc(x.code)}</b> ${esc(calWhat(x))}, ${esc(shortDate(x.day))}${x.allDay ? "" : " kl. " + esc(osloTime(x.start))}${x.room ? " · " + esc(x.room) : ""}</span>`;
+  const next = up[0], exam = up.find(x => x.kind === "exam");
+  return `<a class="cal-strip" href="#${CAL_ROUTE}">${line("Neste i timeplanen", next)}${exam && exam !== next ? line("Neste eksamensdato, " + inDays(daysUntil(exam.day)), exam) : ""}</a>`;
+}
+function calBay(onCal){
+  if (!cal.on) return "";
+  const up = calUpcoming();
+  const exam = up.find(x => x.kind === "exam");
+  const examLed = exam && daysUntil(exam.day) <= 7 ? "paused" : "planned";
+  return `
+    <div class="bay">
+      <a class="bay-name" href="#${CAL_ROUTE}"${onCal ? ' aria-current="page"' : ""}>Timeplan</a>
+      <div class="ports">
+        <button class="port" type="button" data-act="cal" data-id="cal-next" aria-label="Timeplan dag for dag" title="Dag for dag">
+          <span class="led active"></span><span class="jack"></span><span class="port-label">Neste</span></button>
+        <button class="port" type="button" data-act="cal" data-id="cal-exams" aria-label="Eksamensdatoer" title="Eksamensdatoer">
+          <span class="led ${examLed}"></span><span class="jack"></span><span class="port-label">Eksamen</span></button>
+      </div>
+    </div>`;
+}
+
+/* ---------- rendering ---------- */
+function ownerBar(){
+  if (!canEdit) return "";
+  if (!draft) return `<div class="ownerbar"><span class="say${noticeWarn ? " warn" : ""}">${esc(notice || "Bare du ser denne linjen. Besøkende ser siden uten redigering.")}</span>
+    <button class="btn" type="button" data-act="edit-on">Rediger siden</button></div>`;
+  const say = notice || (dirty ? "Du har endringer som ikke er publisert." : "Redigering er på. Ingenting endres for besøkende før du publiserer.");
+  return `<div class="ownerbar"><span class="say${noticeWarn ? " warn" : ""}">${esc(say)}</span>
+    <button class="btn small" type="button" data-act="page">Endre overskrift og ingress</button>
+    <button class="btn small" type="button" data-act="group-new">Ny gruppe</button>
+    <button class="btn" type="button" data-act="discard"${saving ? " disabled" : ""}>Forkast</button>
+    <button class="btn primary" type="button" data-act="save"${dirty && !saving ? "" : " disabled"}>${saving ? "Publiserer" : "Publiser endringer"}</button></div>`;
 }
 function entryHTML(it){
   const spec = it.spec && it.spec.length ? `<dl class="spec">${it.spec.map(([k,v]) => `<dt>${esc(k)}</dt><dd>${esc(v)}</dd>`).join("")}</dl>` : "";
   const text = it.text ? `<p>${esc(it.text)}</p>` : "";
   const tools = it.tools && it.tools.length ? `<p class="tools">Verktøy og tema: ${it.tools.map(esc).join(", ")}</p>` : "";
   const more = it.more && it.more.length ? `<details><summary>Hva jeg har gjort</summary><ul>${it.more.map(m => `<li>${esc(m)}</li>`).join("")}</ul></details>` : "";
-  const links = linkList(it.links, "links");
+  const edit = draft ? `<div class="tools-row">
+      <button class="btn small" type="button" data-act="item-edit" data-id="${esc(it.id)}">Endre</button>
+      <button class="btn small" type="button" data-act="item-up" data-id="${esc(it.id)}">Flytt opp</button>
+      <button class="btn small" type="button" data-act="item-down" data-id="${esc(it.id)}">Flytt ned</button></div>` : "";
   return `<article class="entry" id="p-${esc(it.id)}" tabindex="-1">
     <div class="id"><span class="code">${esc(it.code)}</span><span class="status"><i class="dot ${esc(it.status)}"></i>${STATUS[it.status] || ""}</span></div>
-    <div class="body"><h3>${esc(it.title)}</h3>${text}${spec}${tools}${more}${links}</div>
+    <div class="body"><h3>${esc(it.title)}</h3>${liveLine(it)}${text}${spec}${tools}${more}${linkList(it.links, "links")}${lecLink(it)}${edit}</div>
   </article>`;
 }
 function groupHTML(g){
+  const edit = draft ? `<div class="tools-row">
+      <button class="btn small" type="button" data-act="group-edit" data-id="${esc(g.id)}">Endre gruppe</button>
+      <button class="btn small" type="button" data-act="group-up" data-id="${esc(g.id)}">Flytt opp</button>
+      <button class="btn small" type="button" data-act="group-down" data-id="${esc(g.id)}">Flytt ned</button></div>` : "";
   const empty = g.empty ? `<p class="empty">${esc(g.empty)}</p>` : (g.items.length ? "" : `<p class="empty">Ingen prosjekter her ennå.</p>`);
+  const add = draft ? `<div class="add-row"><button class="btn" type="button" data-act="item-new" data-id="${esc(g.id)}">Legg til i ${esc(g.title)}</button></div>` : "";
   return `<section class="group" aria-labelledby="h-${esc(g.id)}">
-    <div class="group-head"><h2 id="h-${esc(g.id)}">${esc(g.title)}</h2>${g.note ? `<p>${esc(g.note)}</p>` : ""}</div>
-    <div class="entries">${g.items.map(entryHTML).join("")}${empty}</div>
+    <div class="group-head"><h2 id="h-${esc(g.id)}">${esc(g.title)}</h2>${g.note ? `<p>${esc(g.note)}</p>` : ""}${edit}</div>
+    <div class="entries">${g.items.map(entryHTML).join("")}${empty}${add}</div>
   </section>`;
 }
 function render(){
+  const s = cur();
   const route = (location.hash || "").slice(1);
-  const current = state.groups.find(g => g.id === route);
-  const panel = state.groups.map(g => `
+  const current = s.groups.find(g => g.id === route);
+  const courses = lecCourses();
+  const onLec = route === LEC_ROUTE && courses.length > 0;
+  const onCal = route === CAL_ROUTE && cal.on;
+  const panel = s.groups.map(g => `
     <div class="bay">
       <a class="bay-name" href="#${esc(g.id)}"${current && current.id === g.id ? ' aria-current="page"' : ""}>${esc(g.title)}</a>
-      <div class="ports">${g.items.map(it => {
-        const st = (STATUS[it.status] || "").toLowerCase();
-        return `<button class="port" type="button" data-id="${esc(it.id)}" data-group="${esc(g.id)}" aria-label="${esc(it.code)}: ${esc(it.title)}, ${st}" title="${esc(it.title)} (${st})">
-          <span class="led ${esc(it.status)}"></span><span class="jack"></span><span class="port-label">${esc(it.code)}</span></button>`;
-      }).join("")}</div>
-    </div>`).join("");
+      <div class="ports">${g.items.map(it => `
+        <button class="port" type="button" data-act="port" data-id="${esc(it.id)}" data-group="${esc(g.id)}"
+          aria-label="${esc(it.code)}: ${esc(it.title)}, ${(STATUS[it.status] || "").toLowerCase()}" title="${esc(it.title)} (${(STATUS[it.status] || "").toLowerCase()})">
+          <span class="led ${esc(ledClass(it))}"></span><span class="jack"></span><span class="port-label">${esc(it.code)}</span>
+        </button>`).join("")}</div>
+    </div>`).join("") + (courses.length ? `
+    <div class="bay">
+      <a class="bay-name" href="#${LEC_ROUTE}"${onLec ? ' aria-current="page"' : ""}>Forelesninger</a>
+      <div class="ports">${courses.map(c => `
+        <button class="port" type="button" data-act="lec" data-id="${esc(c.id)}"
+          aria-label="Forelesninger i ${esc(c.code)}, ${c.items.length} stykker" title="${esc(c.title)}: ${c.items.length} forelesninger">
+          <span class="led active"></span><span class="jack"></span><span class="port-label">${esc(c.code)}</span>
+        </button>`).join("")}</div>
+    </div>` : "") + calBay(onCal);
   const legend = Object.keys(STATUS).map(k => `<span><i class="dot ${k}"></i>${STATUS[k]}</span>`).join("") +
-    (current ? `<a href="#oversikt">Vis alle prosjekter</a>` : "");
+    (current || onLec || onCal ? `<a href="#oversikt">Vis alle prosjekter</a>` : "");
+  const bar = ownerBar();
+  const q = document.getElementById("lec-q");
+  const keepQ = q ? q.value : "", hadFocus = q && document.activeElement === q;
+  const strip = cal.on && (!route || route === "oversikt") ? calStripHTML() : "";
   root.innerHTML = `<div class="wrap">
-    <header class="top"><h1>${esc(state.title)}</h1>${state.lede ? `<p class="lede">${esc(state.lede)}</p>` : ""}${linkList(state.contact, "contact")}</header>
+    ${bar}
+    <header class="top"><h1>${esc(s.title)}</h1>${s.lede ? `<p class="lede">${esc(s.lede)}</p>` : ""}${linkList(s.contact, "contact")}</header>
     <nav class="panel" aria-label="Alle prosjekter, gruppert">${panel}</nav>
     <p class="legend">${legend}</p>
-    <main id="view">${(current ? [current] : state.groups).map(groupHTML).join("")}</main>
-    <footer>Sist oppdatert ${esc(fmtDate(state.updated))}</footer>
+    ${strip}
+    <main id="view">${onCal ? timeplanHTML() : onLec ? lecturesHTML() : (current ? [current] : s.groups).map(groupHTML).join("")}</main>
+    ${draft ? bar : ""}
+    <footer>Sist oppdatert ${esc(fmtDate(s.updated))}</footer>
   </div>`;
+  const q2 = document.getElementById("lec-q");
+  if (q2 && keepQ) { q2.value = keepQ; lecFilter(keepQ); }
+  if (q2 && hadFocus) q2.focus();
   if (pending) { const id = pending; pending = null; goTo(id); }
 }
 function goTo(id){
   const el = document.getElementById("p-" + id);
   if (!el) return;
-  const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const calm = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   el.scrollIntoView({ behavior: calm ? "auto" : "smooth", block: "start" });
   el.focus({ preventScroll: true });
   el.classList.add("hit");
   setTimeout(() => el.classList.remove("hit"), 1600);
 }
+function changed(){ dirty = true; notice = ""; noticeWarn = false; render(); }
+
+/* ---------- dialogs ---------- */
+function field(id, label, value, opts){
+  opts = opts || {};
+  const hint = opts.hint ? `<small>${esc(opts.hint)}</small>` : "";
+  const req = opts.required ? " required" : "";
+  const max = opts.max ? ` maxlength="${opts.max}"` : "";
+  const control = opts.rows
+    ? `<textarea id="${id}" rows="${opts.rows}"${req}>${esc(value)}</textarea>`
+    : `<input id="${id}" type="text" value="${esc(value)}"${req}${max}>`;
+  return `<label class="field" for="${id}">${esc(label)}${hint}${control}</label>`;
+}
+function openDialog(html, onSubmit, onDelete){
+  dlg.innerHTML = `<form id="dlg-form" method="dialog">${html}</form>`;
+  const form = dlg.querySelector("form");
+  form.addEventListener("submit", e => { e.preventDefault(); if (onSubmit() !== false) { dlg.close(); changed(); } });
+  form.querySelector("[data-dlg=cancel]").addEventListener("click", () => dlg.close());
+  const del = form.querySelector("[data-dlg=delete]");
+  if (del) del.addEventListener("click", () => {
+    if (del.dataset.armed) { onDelete(); dlg.close(); changed(); }
+    else { del.dataset.armed = "1"; del.textContent = "Bekreft sletting"; }
+  });
+  dlg.showModal();
+}
+function actions(submitLabel, canDelete, deleteHint){
+  return `<div class="dlg-actions">
+    <button class="btn primary" type="submit" id="dlg-submit">${esc(submitLabel)}</button>
+    <button class="btn" type="button" data-dlg="cancel" id="dlg-cancel">Avbryt</button>
+    ${canDelete ? `<button class="btn danger push" type="button" data-dlg="delete" id="dlg-delete">Slett</button>` : (deleteHint ? `<small class="push">${esc(deleteHint)}</small>` : "")}
+  </div>`;
+}
+function pageDialog(){
+  const s = draft;
+  openDialog(`<h2>Overskrift og ingress</h2>
+    ${field("f-title", "Overskrift", s.title, { required:true, max:60 })}
+    ${field("f-lede", "Ingress", s.lede, { rows:4, hint:"Én eller to setninger om hvem du er og hva siden viser." })}
+    ${actions("Oppdater", false)}`,
+    () => { s.title = val("f-title"); s.lede = val("f-lede"); });
+}
+function groupDialog(gid){
+  const g = gid ? draft.groups.find(x => x.id === gid) : null;
+  openDialog(`<h2>${g ? "Endre gruppe" : "Ny gruppe"}</h2>
+    ${field("f-gtitle", "Navn", g ? g.title : "", { required:true, max:40 })}
+    ${field("f-gnote", "Beskrivelse", g ? g.note : "", { rows:2 })}
+    ${field("f-gempty", "Tekst nederst i gruppen (valgfritt)", g ? g.empty : "", { hint:"For eksempel hva som kommer senere." })}
+    ${actions(g ? "Oppdater" : "Legg til", !!g && g.items.length === 0, g ? "Flytt eller slett prosjektene før gruppen kan slettes." : "")}`,
+    () => {
+      const title = val("f-gtitle");
+      if (g) { g.title = title; g.note = val("f-gnote"); g.empty = val("f-gempty"); }
+      else draft.groups.push({ id: groupSlug(title), title, note: val("f-gnote"), empty: val("f-gempty"), items: [] });
+    },
+    () => { draft.groups = draft.groups.filter(x => x.id !== gid); });
+}
+function itemDialog(id, gid){
+  const found = id ? findItem(id) : null;
+  const it = found ? found.it : { code:"", title:"", status:"planned", text:"", tools:[], more:[], spec:[] };
+  const home = found ? found.g.id : gid;
+  openDialog(`<h2>${found ? "Endre prosjekt" : "Nytt prosjekt"}</h2>
+    <div class="pair">
+      ${field("f-code", "Kode", it.code, { required:true, max:12, hint:"Kort navn som står under porten i panelet." })}
+      <label class="field" for="f-status">Status<small>Styrer fargen på lyset.</small><select id="f-status">${Object.keys(STATUS).map(k => `<option value="${k}"${k === it.status ? " selected" : ""}>${STATUS[k]}</option>`).join("")}</select></label>
+    </div>
+    ${field("f-ititle", "Tittel", it.title, { required:true, max:90 })}
+    <label class="field" for="f-group">Gruppe<select id="f-group">${draft.groups.map(g => `<option value="${esc(g.id)}"${g.id === home ? " selected" : ""}>${esc(g.title)}</option>`).join("")}</select></label>
+    ${field("f-text", "Beskrivelse", it.text, { rows:4 })}
+    ${field("f-tools", "Verktøy og tema", (it.tools || []).join(", "), { hint:"Skill med komma." })}
+    ${field("f-more", "Hva jeg har gjort", (it.more || []).join("\n"), { rows:4, hint:"Ett punkt per linje. Vises bak en utvidbar lenke." })}
+    ${field("f-spec", "Faktalinjer (valgfritt)", (it.spec || []).map(p => p[0] + ": " + p[1]).join("\n"), { rows:4, hint:"Én per linje, skrevet som «Etikett: tekst». Passer for agenter: Formål, Starter, Verktøy, Venter på." })}
+    ${actions(found ? "Oppdater" : "Legg til", !!found)}`,
+    () => {
+      it.code = val("f-code"); it.title = val("f-ititle"); it.status = val("f-status"); it.text = val("f-text");
+      it.tools = val("f-tools").split(",").map(x => x.trim()).filter(Boolean);
+      it.more = lines(document.getElementById("f-more").value);
+      it.spec = lines(document.getElementById("f-spec").value).map(l => {
+        const i = l.indexOf(":");
+        return i > 0 ? [l.slice(0, i).trim(), l.slice(i + 1).trim()] : ["Merk", l];
+      });
+      const target = draft.groups.find(g => g.id === val("f-group")) || draft.groups[0];
+      if (!found) { it.id = "e" + Math.random().toString(36).slice(2, 9); target.items.push(it); }
+      else if (target !== found.g) { found.g.items.splice(found.i, 1); target.items.push(it); }
+      pending = it.id;
+    },
+    () => { found.g.items.splice(found.i, 1); });
+}
+function move(arr, i, d){
+  const j = i + d;
+  if (i < 0 || j < 0 || j >= arr.length) return false;
+  const t = arr[i]; arr[i] = arr[j]; arr[j] = t;
+  return true;
+}
+
+/* ---------- saving: the page republishes itself with the new content ---------- */
+function buildDocument(s){
+  const css = document.getElementById("css").textContent;
+  const app = document.getElementById("app").textContent;
+  if (!css || !app) return null;
+  const json = JSON.stringify(s).replace(/</g, "\\u003c");
+  return '<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>\n'
+    + '<title>' + esc(s.title) + '</title>\n'
+    + '<meta name="claude:viewport-fit-sides" content="cover">\n'
+    + '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">\n'
+    + '<style id="css">' + css + '</style>\n'
+    + '<div id="root"></div>\n'
+    + '<script type="application/json" id="state">' + json + '<\/script>\n'
+    + '<script id="app">' + app + '<\/script>\n'
+    + '</body></html>';
+}
+async function save(){
+  if (!draft || !dirty || saving) return;
+  const next = clone(draft);
+  next.updated = today();
+  const html = buildDocument(next);
+  if (!html) { notice = "Siden klarte ikke å bygge en ny versjon av seg selv. Ingenting ble publisert."; noticeWarn = true; render(); return; }
+  try { sessionStorage.setItem(STASH, JSON.stringify(draft)); } catch (e) {}
+  saving = true; notice = "Publiserer endringene."; noticeWarn = false; render();
+  try {
+    await artifact.publish(html);
+    notice = "Publisert. Siden lastes på nytt.";
+  } catch (e) {
+    const code = e && e.code;
+    saving = false; noticeWarn = true;
+    if (code === "conflict") notice = "En nyere versjon ble publisert mens du redigerte. Siden lastes på nytt, og endringene dine hentes fram igjen.";
+    else if (code === "rate_limited") notice = "For mange publiseringer på kort tid. Vent litt og prøv igjen.";
+    else if (code === "too_large") notice = "Siden er blitt for stor til å publiseres. Kort ned noe tekst og prøv igjen.";
+    else if (["not_writer","not_granted","not_declared","capability_disabled","capability_removed","consent_required"].includes(code))
+      notice = "Denne visningen kan ikke publisere. Åpne siden i claude.ai som eier og prøv igjen.";
+    else notice = "Publiseringen feilet. Prøv igjen om litt.";
+  }
+  render();
+}
+
+/* ---------- events ---------- */
 root.addEventListener("click", e => {
-  const port = e.target.closest(".port");
-  if (!port) return;
-  const route = (location.hash || "").slice(1);
-  if (state.groups.some(g => g.id === route) && route !== port.dataset.group) { pending = port.dataset.id; location.hash = "#" + port.dataset.group; }
-  else goTo(port.dataset.id);
+  const el = e.target.closest("[data-act]");
+  if (!el) return;
+  const act = el.dataset.act, id = el.dataset.id;
+  if (act === "port") {
+    const route = (location.hash || "").slice(1);
+    const filtered = cur().groups.some(g => g.id === route);
+    if (filtered && route !== el.dataset.group) { pending = id; location.hash = "#" + el.dataset.group; }
+    else goTo(id);
+    return;
+  }
+  if (act === "cal") {
+    e.preventDefault();
+    if ((location.hash || "").slice(1) !== CAL_ROUTE) { pending = id; location.hash = "#" + CAL_ROUTE; }
+    else goTo(id);
+    return;
+  }
+  if (act === "cal-filter") { cal.filter = id || ""; render(); return; }
+  if (act === "cal-refresh") { calRefresh(); return; }
+  if (act === "lec") {
+    e.preventDefault();
+    const target = id ? "lec-" + id : null;
+    if ((location.hash || "").slice(1) !== LEC_ROUTE) { pending = target; location.hash = "#" + LEC_ROUTE; }
+    else if (target) goTo(target);
+    return;
+  }
+  if (!canEdit) return;
+  if (act === "edit-on") { draft = clone(state); dirty = false; notice = ""; noticeWarn = false; render(); return; }
+  if (!draft) return;
+  if (act === "discard") { draft = null; dirty = false; notice = ""; noticeWarn = false; try { sessionStorage.removeItem(STASH); } catch (err) {} render(); }
+  else if (act === "save") save();
+  else if (act === "page") pageDialog();
+  else if (act === "group-new") groupDialog(null);
+  else if (act === "group-edit") groupDialog(id);
+  else if (act === "group-up" || act === "group-down") {
+    if (move(draft.groups, draft.groups.findIndex(g => g.id === id), act === "group-up" ? -1 : 1)) changed();
+  }
+  else if (act === "item-new") itemDialog(null, id);
+  else if (act === "item-edit") itemDialog(id, null);
+  else if (act === "item-up" || act === "item-down") {
+    const f = findItem(id);
+    if (f && move(f.g.items, f.i, act === "item-up" ? -1 : 1)) changed();
+  }
 });
-addEventListener("hashchange", render);
+root.addEventListener("input", e => { if (e.target.id === "lec-q") lecFilter(e.target.value); });
+window.addEventListener("hashchange", render);
 render();
+loadLive();
+setInterval(() => { if (document.visibilityState === "visible") loadLive(); }, 60e3);
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") loadLive(); });
+
+/* The owner's controls light up once claude.ai has said who is viewing. */
+(async () => {
+  if (!window.claude || !window.claude.use) return;
+  const [user, art] = await Promise.all([window.claude.use("user"), window.claude.use("artifact")]);
+  if (!user || !art || !(await user.canEdit())) return;
+  artifact = art; canEdit = true;
+  try {
+    const raw = sessionStorage.getItem(STASH);
+    if (raw) {
+      const kept = JSON.parse(raw);
+      const same = JSON.stringify(Object.assign({}, kept, { updated: "" })) === JSON.stringify(Object.assign({}, state, { updated: "" }));
+      if (same) sessionStorage.removeItem(STASH);
+      else if (kept && Array.isArray(kept.groups)) { draft = kept; dirty = true; notice = "Endringene dine ble ikke publisert sist. De er hentet fram igjen."; noticeWarn = true; }
+    }
+  } catch (e) {}
+  render();
+  /* Calendar: only for the owner, and only when the page has been allowed to use the Google Calendar connector. */
+  const mcp = await window.claude.use("mcp");
+  if (mcp) calStart(mcp);
+})();
 </script>
-</body>
-</html>
+
+</body></html>
