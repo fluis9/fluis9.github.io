@@ -1,0 +1,725 @@
+{
+  "title": "Fredriks arbeidsbenk",
+  "lede": "Jeg studerer cybersikkerhet ved Høyskolen Kristiania i Oslo. Her ligger labarbeidet og prosjektene fra studiet, det jeg bygger på fritiden, og agentene jeg setter opp.",
+  "contact": [
+    [
+      "LinkedIn",
+      "https://www.linkedin.com/in/fredrik-luis-westrum-8576263b5/"
+    ]
+  ],
+  "updated": "2026-11-13",
+  "groups": [
+    {
+      "id": "skole",
+      "title": "Skoleprosjekter",
+      "note": "Emner og innleveringer fra bachelor i cybersikkerhet, 2025 til 2028.",
+      "empty": "",
+      "items": [
+        {
+          "id": "eth2100",
+          "code": "ETH2100",
+          "title": "Etisk hacking: pentest-lab",
+          "status": "active",
+          "text": "Ukentlige labøvelser mot bevisst sårbare maskiner, pluss en egen Active Directory-lab bygget i VMware med domenekontroller på Windows Server.",
+          "tools": [
+            "Kali Linux",
+            "nmap",
+            "Nikto",
+            "OWASP ZAP",
+            "Metasploit",
+            "BloodHound",
+            "Nessus"
+          ],
+          "more": [
+            "Kartla Metasploitable med nmap: over 25 åpne porter, blant annet vsftpd 2.3.4-bakdøren (CVE-2011-2523), bekreftet med NSE-skript.",
+            "Kjørte ZAP Spider og Active Scan mot DVWA: 30 varsler, 5 av dem høy alvorlighet. Sorterte funnene i reelle sårbarheter og sannsynlige falske positiver.",
+            "Satte opp eget domene og egen domenekontroller for å øve på AD-angrep fra Kali på et isolert host-only-nett.",
+            "Skrev en pentestrapport for en webapplikasjon og presenterte funnene i en kundepresentasjon."
+          ],
+          "spec": [],
+          "links": []
+        },
+        {
+          "id": "cyb2100",
+          "code": "CYB2100",
+          "title": "Cyberforsvar",
+          "status": "active",
+          "text": "Høstsemesteret 2026. Deteksjon og analyse: nettverkstrafikk, ondsinnede filer og logger fra angrep jeg kjørte mot min egen server.",
+          "tools": [
+            "Splunk",
+            "Hydra",
+            "fail2ban",
+            "Wireshark",
+            "YARA",
+            "Office- og PDF-analyse"
+          ],
+          "more": [
+            "Kjørte SSH-brute force med Hydra mot min egen server, hentet auth.log inn i Splunk og laget en tidslinje over angrepet og blokkeringene fra fail2ban.",
+            "Løste en Wireshark-CTF og skrev YARA-regler.",
+            "Analyserte ondsinnede Office- og PDF-filer."
+          ],
+          "spec": [],
+          "links": []
+        },
+        {
+          "id": "sky2100",
+          "code": "SKY2100",
+          "title": "Skysikkerhet",
+          "status": "active",
+          "text": "Høstsemesteret 2026. Satte opp og herdet egne servere og tjenester, fra brannmur og SSH til containere bak HTTPS.",
+          "tools": [
+            "Ubuntu Server",
+            "Nginx",
+            "UFW",
+            "SSH",
+            "fail2ban",
+            "Docker",
+            "Nextcloud",
+            "HTTPS"
+          ],
+          "more": [
+            "Herdet en Ubuntu-server: brannmur med UFW, strammere SSH-oppsett og fail2ban.",
+            "Testet Nginx under last.",
+            "Satte opp Nextcloud i Docker bak HTTPS."
+          ],
+          "spec": [],
+          "links": []
+        },
+        {
+          "id": "pgr112",
+          "code": "PGR112",
+          "title": "RussRental: utleiesystem i Java",
+          "status": "done",
+          "text": "Eksamensprosjekt i objektorientert programmering. Et administrasjonssystem for utleie med MySQL-database, bygget i IntelliJ.",
+          "tools": [
+            "Java",
+            "MySQL",
+            "JDBC",
+            "DAO-mønster"
+          ],
+          "more": [
+            "Arv og subklasser for ulike typer utleieobjekter, med egen feilhåndtering.",
+            "Ryddet opp med try-with-resources i filparseren og samlet databasetilkoblingene i DAO-laget.",
+            "Levert med fire videoer: demo, forklaring av arv, unntakshåndtering og live-koding av en ny subklasse."
+          ],
+          "spec": [],
+          "links": []
+        },
+        {
+          "id": "tk2100",
+          "code": "TK2100",
+          "title": "Websikkerhet",
+          "status": "done",
+          "text": "Praktiske øvelser i SQL-injeksjon mot en lokal øvingsapp, blant annet omgåelse av validering på klientsiden. Teori om XSS, CSRF, sesjonskapring og sertifikater.",
+          "tools": [
+            "SQL-injeksjon",
+            "XSS",
+            "CSRF"
+          ],
+          "more": [],
+          "spec": [],
+          "links": []
+        },
+        {
+          "id": "pgr215",
+          "code": "PGR215",
+          "title": "Datainnsamling og analyse",
+          "status": "planned",
+          "text": "Emne neste studieår.",
+          "tools": [],
+          "more": [],
+          "spec": [],
+          "links": []
+        },
+        {
+          "id": "pgr216",
+          "code": "PGR216",
+          "title": "KI og cybersikkerhet",
+          "status": "planned",
+          "text": "Emne neste studieår.",
+          "tools": [],
+          "more": [],
+          "spec": [],
+          "links": []
+        }
+      ]
+    },
+    {
+      "id": "prosjekter",
+      "title": "Sideprosjekter",
+      "note": "Ting jeg bygger utenom studiet.",
+      "empty": "",
+      "items": [
+        {
+          "id": "matmeg",
+          "code": "MatMeg",
+          "title": "Middagsforslag ut fra ukens tilbud",
+          "status": "active",
+          "text": "Norsk webapp som foreslår oppskrifter basert på hva som er på tilbud i butikkene du velger: Rema 1000, Kiwi, Meny og Bunnpris. Rettene rangeres etter hvor mange ingredienser som er på tilbud.",
+          "tools": [
+            "API-integrasjon",
+            "Kassal.app",
+            "JSON",
+            "PDF-uttrekk"
+          ],
+          "more": [
+            "Fire løst koblede lag: innhenting, normalisering, forhåndsberegnet matching og en frontend som lagrer valgene lokalt.",
+            "Henter strukturert tilbudsdata fra kundeavisene. Tekstlaget brukes først, med bildetolkning som reserve når PDF-en ikke har lesbar tekst."
+          ],
+          "spec": [],
+          "links": []
+        },
+        {
+          "id": "gdpr",
+          "code": "GDPR",
+          "title": "Innsyn i egne data",
+          "status": "planned",
+          "text": "Ber selskaper og datameglere om innsyn i hva de har lagret om meg, for så å analysere hva som faktisk samles inn og hvordan det henger sammen.",
+          "tools": [
+            "Personvern",
+            "GDPR artikkel 15",
+            "Dataanalyse"
+          ],
+          "more": [],
+          "spec": [],
+          "links": []
+        },
+        {
+          "id": "deteksjonslab",
+          "code": "Deteksjon",
+          "title": "Angrep og deteksjon i egen lab",
+          "status": "planned",
+          "text": "Jeg skal angripe min egen lab og skrive deteksjonen for hvert angrep: hvilke spor angrepet etterlater, hvilket Splunk-søk som finner dem, og hva søket ikke fanger. Hver deteksjon kobles til MITRE ATT&CK. Først ut er SSH brute force, så portskanning, password spraying og Kerberoasting mot AD-labben.",
+          "tools": [
+            "Splunk",
+            "SPL",
+            "MITRE ATT&CK",
+            "Hydra",
+            "fail2ban",
+            "Active Directory"
+          ],
+          "more": [],
+          "spec": [],
+          "links": []
+        },
+        {
+          "id": "nettbutikk",
+          "code": "Nettbutikk",
+          "title": "Nettbutikk for treningstilbehør",
+          "status": "idea",
+          "text": "Shakere, strikker, kalk og løftestropper. Foreløpig på idéstadiet.",
+          "tools": [],
+          "more": [],
+          "spec": [],
+          "links": []
+        }
+      ]
+    },
+    {
+      "id": "agenter",
+      "title": "Agenter",
+      "note": "Hva hver agent gjør, hva som starter den, og hvor langt den har kommet. MatMeg-agentene er underagenter i Claude Code; lyset blinker raskt mens en av dem jobber.",
+      "empty": "Neste agent får sin egen port i panelet når den er planlagt.",
+      "items": [
+        {
+          "id": "arbeidsbenk",
+          "code": "Arbeidsbenk",
+          "title": "Holder denne siden oppdatert",
+          "status": "active",
+          "text": "",
+          "tools": [],
+          "more": [],
+          "spec": [
+            [
+              "Formål",
+              "Tar imot beskjeder som «sett GDPR til pågår» eller «legg til honeypot som idé» og oppdaterer innholdet på siden. Endringen er ute etter omtrent et minutt."
+            ],
+            [
+              "Starter",
+              "Når jeg ber om en endring i en Claude-økt, også fra mobilen."
+            ],
+            [
+              "Tilgang",
+              "Kan bare endre data.json. Commiten stoppes hvis noe annet er med, og hver endring ligger i git-historikken så den kan angres."
+            ],
+            [
+              "Sikring",
+              "Innholdet valideres før commit: kjente statuser, unike id-er, maksimal lengde og bare https-, http- og mailto-lenker. GitHub Actions kjører samme sjekk én gang til."
+            ]
+          ],
+          "links": []
+        },
+        {
+          "id": "canvas",
+          "code": "Canvas",
+          "title": "Forelesningshenter for Canvas",
+          "status": "paused",
+          "text": "",
+          "tools": [],
+          "more": [],
+          "spec": [
+            [
+              "Formål",
+              "Laste ned nye forelesninger fra Canvas som PDF og legge dem i riktig mappe i Google Drive, klare for notatboken til hvert emne."
+            ],
+            [
+              "Starter",
+              "Hver dag, på tidsplan."
+            ],
+            [
+              "Verktøy",
+              "Python, Canvas API, Google Drive"
+            ],
+            [
+              "Venter på",
+              "API-token fra skolens IT-avdeling. Studenter kan ikke opprette egne, så jeg har bedt om tilgang i stedet for å gå rundt sperren."
+            ]
+          ],
+          "links": []
+        },
+        {
+          "id": "datainnhenting",
+          "code": "Innhenting",
+          "title": "MatMeg: henter ukens tilbud",
+          "status": "active",
+          "text": "",
+          "tools": [],
+          "more": [],
+          "spec": [
+            [
+              "Formål",
+              "Holder tilbudene i MatMeg ferske. Søker opp hver ingrediens fra oppskriftene i Kassal.app og regner en vare som tilbud når prisen er minst 5 % under den høyeste i prishistorikken."
+            ],
+            [
+              "Starter",
+              "Når en Claude Code-økt i MatMeg gir den en oppgave om innhenting eller tilbudsdata."
+            ],
+            [
+              "Sikring",
+              "Skriver bare når hele innhentingen for en butikk er ferdig, i én transaksjon. Feiler mer enn 20 % av søkene, endres ingenting, og tom respons betyr at det gamle beholdes."
+            ],
+            [
+              "Verktøy",
+              "Node.js, Kassal.app-API, database"
+            ]
+          ],
+          "links": []
+        },
+        {
+          "id": "matching",
+          "code": "Matching",
+          "title": "MatMeg: kobler ingredienser til tilbud",
+          "status": "active",
+          "text": "",
+          "tools": [],
+          "more": [],
+          "spec": [
+            [
+              "Formål",
+              "Sørger for at en ingrediens i en oppskrift treffer riktig tilbudsvare, og avviser smaker, snacks, ferdigretter og barnemat selv om ordet står i navnet."
+            ],
+            [
+              "Starter",
+              "Når forslagene treffer feil eller for lite, eller et nytt feiltreff skal inn som testtilfelle."
+            ],
+            [
+              "Arbeidsmåte",
+              "Testdrevet: nytt tilfelle legges i fasiten først, deretter minst mulig endring i reglene. Ingen tilfeller som var riktige får bli gale."
+            ],
+            [
+              "Krav",
+              "Under 100 ms for 108 oppskrifter mot rundt 700 tilbud, uten AI-kall."
+            ]
+          ],
+          "links": []
+        },
+        {
+          "id": "frontend",
+          "code": "Frontend",
+          "title": "MatMeg: sidene brukeren ser",
+          "status": "active",
+          "text": "",
+          "tools": [],
+          "more": [],
+          "spec": [
+            [
+              "Formål",
+              "Endringer i grensesnittet: oppskrifter, tilbud, handleliste, ukesmeny, innlogging og PWA-filene."
+            ],
+            [
+              "Starter",
+              "Når en Claude Code-økt i MatMeg skal endre noe under frontend/."
+            ],
+            [
+              "Regler",
+              "Mobil først, ingen rammeverk eller byggesteg, alt fra API-et escapes før det vises, og streng CSP uten inline-skript. Spør før utseendet endres."
+            ]
+          ],
+          "links": []
+        },
+        {
+          "id": "gjennomgang",
+          "code": "Kontroll",
+          "title": "MatMeg: sikkerhetsgjennomgang før commit",
+          "status": "active",
+          "text": "",
+          "tools": [],
+          "more": [],
+          "spec": [
+            [
+              "Formål",
+              "Leser endringer med kritisk blikk på tilgangskontroll, hemmeligheter, inndata og drift, og rapporterer funn sortert etter alvorlighet, med hva som er bekreftet og hva som bare er mistanke."
+            ],
+            [
+              "Starter",
+              "Før commit eller utrulling."
+            ],
+            [
+              "Tilgang",
+              "Bare lesing og tester. Endrer ingen filer, skriver ikke til databasen og installerer ingenting."
+            ]
+          ],
+          "links": []
+        }
+      ]
+    }
+  ],
+  "lectures": {
+    "note": "Foilene fra hver forelesning i høstsemesteret 2026, sortert per emne. Lenkene åpner PDF-ene i Google Drive.",
+    "courses": [
+      {
+        "id": "eth2100",
+        "code": "ETH2100",
+        "title": "Etisk hacking",
+        "folder": "1s8D0fPvQ-tRYPD3hjiTqr7t7hsADuHK-",
+        "items": [
+          {
+            "n": "01",
+            "week": 35,
+            "title": "What Hats Are You",
+            "file": "1iCCPCVXzEVFqnpE2TodzpROnIZe_pAd5"
+          },
+          {
+            "n": "02",
+            "week": 35,
+            "title": "My Name Is Bond",
+            "file": "1KjJ5gd5tdVXQlfT4oDOnVz33fBKSr0cQ"
+          },
+          {
+            "n": "03",
+            "week": 36,
+            "title": "Your Internets Belong To Us, del 1",
+            "file": "1ef6HaJo0Y7ws8OqPdLEc2UULCA-DZEQx"
+          },
+          {
+            "n": "04",
+            "week": 36,
+            "title": "Your Internets Belong To Us, del 2",
+            "file": "1R2NDeHm8PnjuANPeeFplYEV9bXdHOZ0O"
+          },
+          {
+            "n": "05",
+            "week": 37,
+            "title": "Your Internets Belong To Us, del 3",
+            "file": "1FkmupvOWt0MInI6ZfI_qjmOKZ-dkmGQ_"
+          },
+          {
+            "n": "06",
+            "week": 37,
+            "title": "Black Arts of IT",
+            "file": "10MXTkb1IQSHbKE2goOqpgIJGGUvKLN9j"
+          },
+          {
+            "n": "07",
+            "week": 38,
+            "title": "Your Internets Belong To Us, del 4",
+            "file": "1jBQ4mjZKCLBw70ngJhknFh4SN_wKcsDc"
+          },
+          {
+            "n": "08",
+            "week": 38,
+            "title": "Obscurity What I Want",
+            "file": "1_Ro5WSr1yWcXxAgtYMz3czFNzgaXb8dS"
+          },
+          {
+            "n": "09",
+            "week": 39,
+            "title": "A Pineapple for the Rest of Us",
+            "file": "1KMTfS3mtmsYiv4lCkCvqKvexOeRGknqp"
+          },
+          {
+            "n": "10",
+            "week": 39,
+            "title": "Can't Do That, Dave",
+            "file": "1skmif2P57kg-qqjaEbrgkdtS--qh6r2H"
+          },
+          {
+            "n": "11",
+            "week": 40,
+            "title": "Into the Rabbit Hole, del 1",
+            "file": "1e3j92XeeZ4q1yT37Sd92Yb74T7OrPNFe"
+          },
+          {
+            "n": "12",
+            "week": 40,
+            "title": "Buried Viking Treasure",
+            "file": "1DdoeT_f8C66IIr0rqwe2FOb63c-KWbAA"
+          },
+          {
+            "n": "13",
+            "week": 41,
+            "title": "Open or Closed",
+            "file": "1bZ6ORlZMUhFDfnkzMbb2a-ffA_61QLLm"
+          },
+          {
+            "n": "14",
+            "week": 41,
+            "title": "I Will Let Myself In",
+            "file": "1JYprfK0vdo945hbUo3L4x_HRCyE6Oiw6"
+          },
+          {
+            "n": "15",
+            "week": 42,
+            "title": "Into the Rabbit Hole, del 2",
+            "file": "1iOQRgtW5F8d0dHXz5r9U4RsNE-ocThhG"
+          },
+          {
+            "n": "16",
+            "week": 42,
+            "title": "Deeper into the Rabbit Hole, del 1",
+            "file": "15xkBVbfZzIFOFlK6-B61Yx0VmHikTwBj"
+          },
+          {
+            "n": "17",
+            "week": 43,
+            "title": "What the Duck",
+            "file": "1H1I0RNl02LNcGXDjCd5FPmO14iaoTpDu"
+          },
+          {
+            "n": "18",
+            "week": 43,
+            "title": "What's All the Fuzz About Cloud",
+            "file": "1PfyKdCRq1xERl6W3gTRo1nsSYsUfXXAS"
+          }
+        ],
+        "extra": [
+          {
+            "n": "",
+            "week": 36,
+            "title": "Eksempel på sikkerhetsrapport",
+            "file": "1gT1eSo22lq_SarY6FeJ_xpSO10LPNlD1"
+          },
+          {
+            "n": "",
+            "week": 37,
+            "title": "Arbeidskrav i ETH2100",
+            "file": "1XWc7eFuBtoK79w7saMI0b5vaojT2eTYM"
+          },
+          {
+            "n": "",
+            "week": null,
+            "title": "Eksempel på pentest-tillatelse (Word)",
+            "file": "1KtpMMSjQn7x6umR4RBwM7MzMKkpsZVSf"
+          }
+        ],
+        "upcoming": []
+      },
+      {
+        "id": "cyb2100",
+        "code": "CYB2100",
+        "title": "Cyberforsvar",
+        "folder": "1oICkM_IsVY02_eY9rA9Kp3Y0Qb-VzGe-",
+        "items": [
+          {
+            "n": "1.1",
+            "week": null,
+            "title": "Introduksjon til cyberforsvar",
+            "file": "1X7McDcWpJGMcUOo8PEbW9X0QuTiZhL6R"
+          },
+          {
+            "n": "1.2",
+            "week": null,
+            "title": "Sikkerhetsbegreper og rammeverk",
+            "file": "14DQji_45x7wtdPX-dNuT9hX7HmDbbrGQ"
+          },
+          {
+            "n": "2.1",
+            "week": null,
+            "title": "Trussellandskapet og trusselaktører",
+            "file": "1pQ5TuDW9oVoYojDKb35csK5gGYI-p1mH"
+          },
+          {
+            "n": "2.2",
+            "week": null,
+            "title": "Trusselmodellering: Cyber Kill Chain, diamantmodellen, MITRE ATT&CK",
+            "file": "10QnOMJ9bytknH1a4tkckWzqgZw034ioI"
+          },
+          {
+            "n": "3.1",
+            "week": null,
+            "title": "Hva er en SOC",
+            "file": "1NU0xStEaafUEOa_5qe0uJ1VWqFuxLyPL"
+          },
+          {
+            "n": "3.2",
+            "week": null,
+            "title": "SOC-tjenester",
+            "file": "1Ird6bPi5y_-6RjL_GqahLclL_EO_UBlG"
+          },
+          {
+            "n": "4.1",
+            "week": null,
+            "title": "Data og logger",
+            "file": "1t9k3pbgfpyZvIlyiJvPnePV7UUXSqSa4"
+          },
+          {
+            "n": "4.2",
+            "week": null,
+            "title": "SIEM",
+            "file": "1EKEBRfG2fHSWw0hq2H82QRHNjA9PKKgn"
+          },
+          {
+            "n": "5.1",
+            "week": null,
+            "title": "Splunk",
+            "file": "1j-TNGg0EXaFvPseizt2FaektCwECozi-"
+          },
+          {
+            "n": "5.2",
+            "week": null,
+            "title": "Grunnleggende søk i Splunk",
+            "file": "1-dPUMGEUeRshaovi7bIs9n1v-oekKpKj"
+          },
+          {
+            "n": "6.1",
+            "week": null,
+            "title": "Hendelseshåndtering",
+            "file": "1wGboQnjfib4O4XDo-p3UUgXw7EF5Mb84"
+          },
+          {
+            "n": "6.2",
+            "week": null,
+            "title": "Hendelseshåndtering 2: triage og playbooks",
+            "file": "1_9wEGbGFiRWv611ZIebG3PnA6vVgVW6R"
+          },
+          {
+            "n": "7.1",
+            "week": null,
+            "title": "Digital etterforskning",
+            "file": "1v0nbxwp_poddXI-d3bmy-i-CIZzoe_CE"
+          },
+          {
+            "n": "7.2",
+            "week": null,
+            "title": "Digital etterforskning 2: disk, minne og tidslinje",
+            "file": "1AB1goie3XEQid8EFrzf6gKemSG8IIEgC"
+          },
+          {
+            "n": "8.1",
+            "week": null,
+            "title": "Skadevare",
+            "file": "1mLRFXU4a5mwGwxJRoDpZo2zMCddAhmva"
+          },
+          {
+            "n": "8.2",
+            "week": null,
+            "title": "Løsepengevirus",
+            "file": "16tR2pvLfTlCsvSI2EUCaBNXqzeY25owL"
+          },
+          {
+            "n": "9.1",
+            "week": null,
+            "title": "Threat intelligence og threat hunting",
+            "file": "1UDOAex3lVv5T2ZM0UMuTTzUk-q4xOoui"
+          },
+          {
+            "n": "9.2",
+            "week": null,
+            "title": "Tillegg til løsepengevirus (8.2)",
+            "file": "1BBOVHFJQ7zvBXoaovZp5rllNtbzAI3OH"
+          }
+        ],
+        "extra": [],
+        "upcoming": [
+          "Lateral movement og forsvarbar arkitektur",
+          "Sårbarhetshåndtering og systemherding",
+          "Repetisjon"
+        ]
+      },
+      {
+        "id": "sky2100",
+        "code": "SKY2100",
+        "title": "Skysikkerhet",
+        "folder": "1JYy_eiLoE8uNYdaaA4oanvtfIJNLxcMN",
+        "items": [
+          {
+            "n": "01",
+            "week": null,
+            "title": "Introduksjon",
+            "file": "11ABYUWZhMOeI4QZahw_ltls1olQ3OIi4"
+          },
+          {
+            "n": "02",
+            "week": null,
+            "title": "Linux og infrastruktur",
+            "file": "1eE_sAg6GKGsk_sFnMNLtD6stgRvA7BFq"
+          },
+          {
+            "n": "03",
+            "week": null,
+            "title": "Webtjenester, last og DDoS",
+            "file": "13dP-AIUn1PIFgnrlN7pfPvgRAlx95QWD"
+          },
+          {
+            "n": "04",
+            "week": null,
+            "title": "Nettverk og brannmurkontroller",
+            "file": "1WHYyruIiyFh90yZeP4YBG6ejp0lbtlsz"
+          },
+          {
+            "n": "05",
+            "week": null,
+            "title": "Skybasert arkitektur kontra lift-and-shift",
+            "file": "1eKyxFur6IrJ02JjdsNPeXEdAD9BvKrdY"
+          },
+          {
+            "n": "06",
+            "week": null,
+            "title": "TLS, data i transitt og Wireshark",
+            "file": "17DYuIh-mvYn-NLxs_vQGP8KDAlHlh-xq"
+          },
+          {
+            "n": "07",
+            "week": null,
+            "title": "Herding og tilgangskontroll",
+            "file": "12vo8_poJD-e2UrlU4IZ_mZlPGFBlgEFa"
+          },
+          {
+            "n": "08",
+            "week": null,
+            "title": "DevSecOps, WAF og sikre apper",
+            "file": "1QmpL_PWz-yItJbq_zExz6dXUYFbG1_w4"
+          },
+          {
+            "n": "09",
+            "week": null,
+            "title": "Sikkerhetsovervåking og IDS",
+            "file": "12lQhNSrLY94CjaD29Smb9mgeDKACCEKH"
+          },
+          {
+            "n": "10",
+            "week": null,
+            "title": "Hendelseshåndtering og loggtidslinje",
+            "file": "1Y0rh4Ld5qoPkEPJVve2pDMGSw3w4nQNM"
+          }
+        ],
+        "extra": [],
+        "upcoming": [
+          "Robusthet, RAID 1 og backup",
+          "Sikkerhetsautomatisering og KI",
+          "Samlet case og eksamensverksted"
+        ]
+      }
+    ]
+  }
+}
