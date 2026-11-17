@@ -7,7 +7,7 @@
       "https://www.linkedin.com/in/fredrik-luis-westrum-8576263b5/"
     ]
   ],
-  "updated": "2026-11-13",
+  "updated": "2026-11-17",
   "groups": [
     {
       "id": "skole",
@@ -150,6 +150,37 @@
       "note": "Ting jeg bygger utenom studiet.",
       "empty": "",
       "items": [
+        {
+          "id": "treningsapp",
+          "code": "Treningsapp",
+          "title": "Treningsapp for styrketrening",
+          "status": "active",
+          "text": "PWA for å logge styrketrening og følge treningsprogram, laget for å erstatte Hevy og Liftosaur og ha full kontroll over egne data. Fungerer uten nett, synker mellom enheter og brukes daglig på iPhone.",
+          "tools": [
+            "React",
+            "TypeScript",
+            "PWA",
+            "IndexedDB",
+            "Cloudflare Workers",
+            "D1",
+            "Passkeys",
+            "Playwright"
+          ],
+          "more": [
+            "Lokal-først lagring med egen synk til Cloudflare D1 i EU, og innlogging med passkeys.",
+            "Importerer historikk fra Hevy og Liftosaur, og regner ut vekter for programmene Jacked & Tan 2.0 og J&T.3.",
+            "Statistikk, muskelkart, kroppsmål, skive- og 1RM-kalkulator, mørk modus og Spotify-fjernkontroll.",
+            "Sikkerhetshoder med streng CSP, validering av all data fra synk og sikkerhetskopi, og uavhengige sikkerhetsgjennomganger.",
+            "CI med enhetstester og nettlesertester i GitHub Actions."
+          ],
+          "spec": [],
+          "links": [
+            [
+              "Prøv demoen",
+              "https://treningsapp.f7uis.workers.dev/?demo"
+            ]
+          ]
+        },
         {
           "id": "matmeg",
           "code": "MatMeg",
